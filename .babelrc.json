@@ -1,0 +1,26 @@
+{
+  // "presets": [
+  //   "@emotion/babel-preset-css-prop"
+  //   [
+  //     "@babel/preset-react",
+  //     { "reuntime": "automatic", "importSource": "@emotion/react" }
+  //   ]
+  // ],
+  "plugins": [
+    // "@emotion",
+    [
+      "@emotion/babel-plugin-jsx-pragmatic",
+      {
+        "export": "jsx",
+        "import": "__to_avoid_prepending_/** @jsxImportSource @emotion/react */",
+        "module": "@emotion/react"
+      }
+    ],
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "__to_avoid_prepending_/** @jsxImportSource @emotion/react */"
+      }
+    ]
+  ]
+}
