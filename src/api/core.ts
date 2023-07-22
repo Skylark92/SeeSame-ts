@@ -21,6 +21,6 @@ const db = getFirestore(app);
 
 // collections
 const C_survey = collection(db, 'Survey');
-const C_user = collection(db, 'Users');
+const C_user = collection(db, 'User');
 
 export { app, analytics, db, C_survey, C_user };
