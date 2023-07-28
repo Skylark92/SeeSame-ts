@@ -1,11 +1,11 @@
 import { C_survey } from 'api/core';
-import { SurveyResponse } from 'api/type/survey';
+import { SurveyResponse, Tags } from 'api/type/survey';
 import { doc, setDoc } from 'firebase/firestore';
 
 export default async function addSurvey(
   title: string,
   content: string,
-  tag: string[] = [],
+  tag: Tags = [],
   choiceA = '가능',
   choiceB = '불가능',
 ): Promise<SurveyResponse> {

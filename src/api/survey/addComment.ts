@@ -43,6 +43,4 @@ export default async function addComment(
 
     return response;
   }
-
-  return response;
 }
