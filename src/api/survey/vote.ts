@@ -1,11 +1,5 @@
 import { db } from 'api/core';
-import {
-  arrayUnion,
-  doc,
-  getDoc,
-  increment,
-  runTransaction,
-} from 'firebase/firestore';
+import { arrayUnion, doc, getDoc, runTransaction } from 'firebase/firestore';
 import { SurveyData, SurveyResponse } from 'api/type/survey';
 import { UserData } from 'api/type/user';
 
@@ -43,7 +37,7 @@ export default async function vote(
   try {
     const profile = user.profile;
     const surveyRef = doc(db, 'Survey', survey._id); // 서베이 문서
-    const userSurveyRef = doc(db, 'Users', user._id, 'Survey', survey._id); // 유저 문서 내 서베이 문서
+    const userSurveyRef = doc(db, 'User', user._id, 'Survey', survey._id); // 유저 문서 내 서베이 문서
 
     await runTransaction(db, async (transaction) => {
       const surveyDoc = await transaction.get(surveyRef);
@@ -59,34 +53,33 @@ export default async function vote(
       }
 
       // 서베이 문서 통계 업데이트
-      transaction.update(surveyRef, {
-        stats: {
-          total: increment(1),
-          [choice]: {
-            total: increment(1),
-            MBTI: {
-              [profile.MBTI]: increment(1),
-            },
-            [profile.gender]: {
-              [profile.age]: increment(1),
-            },
-          },
-        },
+      const oldData = surveyDoc.data().stats;
+      const newData: any = {
         user: arrayUnion(user._id),
-      });
+      };
+      newData['stats.total'] = oldData.total + 1; // 응답 전체 1 추가
+      newData[`stats.${choice}.total`] = oldData[choice].total + 1; // 해당 선택지의 총합을 1 추가
+      newData[`stats.${choice}.MBTI.${profile.MBTI}`] =
+        oldData[choice].MBTI[profile.MBTI] + 1;
+      newData[`stats.${choice}.${profile.gender}.${profile.age}`] =
+        oldData[choice][profile.gender][profile.age] + 1;
+
+      transaction.update(surveyRef, newData);
 
       // 유저 문서 내 서베이 문서 추가
       const { stats, ...rest } = survey;
-      transaction.set(
-        userSurveyRef,
-        {
-          ...rest,
-          choice,
-          isVoted: true,
-          votedAt: new Date(),
-        },
-        { merge: true },
-      ); // merge 옵션, 문서가 존재하는 경우 덮어 쓰지 않고 병합
+      const userSurveyData = {
+        ...rest,
+        choice,
+        isVoted: true,
+        votedAt: new Date(),
+      };
+
+      transaction.update(doc(db, 'User', user._id), {
+        survey: arrayUnion(userSurveyData),
+      });
+
+      transaction.set(userSurveyRef, userSurveyData, { merge: true }); // merge 옵션, 문서가 존재하는 경우 덮어 쓰지 않고 병합
     });
 
     const latestSurvey = await getDoc(surveyRef);
