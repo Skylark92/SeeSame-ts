@@ -2,7 +2,7 @@ import { C_user } from 'api/core';
 import { doc, updateDoc } from 'firebase/firestore';
 import { Profile, ProfileResponse } from 'api/type/user';
 
-export default async function setProfile(u_id: string, data: Profile) {
+export default async function setProfile(userid: string, data: Profile) {
   // 프로필 설정
 
   const response: ProfileResponse = {
@@ -35,7 +35,7 @@ export default async function setProfile(u_id: string, data: Profile) {
   const imageList = /profile-image-0\d/g;
 
   // 데이터 검사
-  if (!(u_id && data)) {
+  if (!(userid && data)) {
     response.message = '로그인 정보가 없거나, 변경할 프로필 정보가 없습니다.';
     return response;
   }
@@ -66,7 +66,7 @@ export default async function setProfile(u_id: string, data: Profile) {
 
   // 실행
   try {
-    const userRef = doc(C_user);
+    const userRef = doc(C_user, userid);
 
     await updateDoc(userRef, {
       profile: data,
