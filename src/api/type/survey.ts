@@ -8,16 +8,28 @@ export interface SurveyData {
   content: string;
   choiceA: string;
   choiceB: string;
-  tag: string[];
+  tag: Tags;
   createdAt: Date | Timestamp;
   user: string[];
-  // comment: Comment;
   stats: {
     total: number;
     choiceA: Choice;
     choiceB: Choice;
   };
 }
+
+export type Tags = Tag[];
+
+export type Tag =
+  | 'BASIC'
+  | 'COUPLE'
+  | 'DISPUTE'
+  | 'EMOJI'
+  | 'FOOD'
+  | 'HEART'
+  | 'HOT'
+  | 'PUBLIC'
+  | 'SESAME';
 
 export interface SurveyResponse extends CustomResponse {
   survey?: SurveyData;
