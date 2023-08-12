@@ -2,6 +2,7 @@ import { db } from 'api/core';
 import { SurveyData } from 'api/type/survey';
 import { UserData } from 'api/type/user';
 import {
+  DocumentReference,
   collection,
   getDoc,
   getDocs,
@@ -17,7 +18,7 @@ export default async function getComments(
   const commentList: unknown[] = [];
   const q = query(
     collection(db, 'Survey', survey._id, 'Comment'),
-    orderBy('like', 'desc'),
+    orderBy('createdAt'), // 'like'
   );
   const snapshot = await getDocs(q);
 
@@ -25,6 +26,10 @@ export default async function getComments(
     const data = doc.data();
 
     if (data.author) {
+      if (!(data.author instanceof DocumentReference)) {
+        // author가 참조형이 아닐 경우 통과
+        continue;
+      }
       // 참조할 게 있으면
       const docSnap = await getDoc(data.author);
 
@@ -41,7 +46,7 @@ export default async function getComments(
         console.log(
           `유저 정보를 불러오는 데 실패했습니다. (Comment ID : ${data.id})`,
         );
-    } else commentList.push(data);
+    }
   }
 
   return commentList;

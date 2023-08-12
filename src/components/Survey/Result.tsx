@@ -1,7 +1,6 @@
 import { css, keyframes } from '@emotion/react';
-import { PropsWithChildren, useContext } from 'react';
+import { PropsWithChildren } from 'react';
 import { color } from 'style/color';
-import SurveyContext from 'context/SurveyContext';
 import Button from 'components/Button';
 import Brief from './Result/Brief';
 import Total from './Result/Field/Total';
@@ -26,8 +25,6 @@ to {
 `;
 
 export default function Result({ handler, ...props }: ResultProps) {
-  const context = useContext(SurveyContext);
-  console.log(context);
   return (
     <article
       css={css`

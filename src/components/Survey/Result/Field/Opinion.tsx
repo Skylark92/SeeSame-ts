@@ -22,7 +22,7 @@ export default function Opinion() {
     if (survey) {
       getComments(survey).then((res) => {
         setComments(res as Comment[]);
-        console.log(res); // 콘솔
+        // console.log(res); // 콘솔
       });
     }
   }, []);
