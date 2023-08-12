@@ -9,6 +9,7 @@ import Input from './Form/Input';
 import Button from 'components/Button';
 import ErrorMessage from 'components/ErrorMessage';
 import useUpdateProfile from 'hooks/useUpdateProfile';
+import tempName from 'util/tempName';
 
 type ProfileInputs = {
   profileImage: ProfileImage;
@@ -22,9 +23,14 @@ type ProfileInputs = {
 };
 
 export default function Form() {
+  const user = useSelector((state: RootState) => state.auth.user); // 유저 상태
+  if (!user) return;
+
+  const nickname = user.profile?.nickname;
+  const profileImage = user.profile?.profileImage;
   const [inputs, setInputs] = useState<ProfileInputs>({
-    profileImage: 'profile-image-01',
-    nickname: '익명 034',
+    profileImage: profileImage ? profileImage : 'profile-image-01',
+    nickname: nickname ? nickname : tempName(user._id),
     gender: null,
     age: null,
     EI: null,
@@ -34,7 +40,6 @@ export default function Form() {
   });
 
   const [isValid, setIsValid] = useState<boolean>(false); // 유효성 상태
-  const user = useSelector((state: RootState) => state.auth.user); // 유저 상태
   const { updateProfile, isPending, error } = useUpdateProfile();
 
   useEffect(() => {

@@ -1,11 +1,12 @@
 import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { RootState } from 'store/store';
 import UserMenu from 'components/UserMenu';
 
 export default function App() {
   const auth = useSelector((state: RootState) => state.auth);
+  const { pathname } = useLocation();
   if (!auth) return;
 
   return (
@@ -16,7 +17,7 @@ export default function App() {
         height: 100dvh;
       `}
     >
-      {auth.isLogin && <UserMenu />}
+      {auth.isLogin && pathname !== '/editprofile' && <UserMenu />}
       {<Outlet />}
     </div>
   );

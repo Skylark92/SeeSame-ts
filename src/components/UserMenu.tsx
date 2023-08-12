@@ -117,12 +117,12 @@ export default function UserMenu() {
               }
             `}
           >
-            <li onClick={logout}>로그 아웃</li>
-            {/* <li>
+            <li>
               <Link to='/editprofile' onClick={onClickHandler}>
                 정보 수정
               </Link>
-            </li> */}
+            </li>
+            <li onClick={logout}>로그 아웃</li>
           </ul>
         </nav>
       )}

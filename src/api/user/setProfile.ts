@@ -1,8 +1,9 @@
 import { C_user } from 'api/core';
 import { doc, updateDoc } from 'firebase/firestore';
 import { Profile, ProfileResponse } from 'api/type/user';
+import isHaveNickname from './isHaveNickname';
 
-export default async function setProfile(userid: string, data: Profile) {
+export default async function setProfile(id: string, data: Profile) {
   // 프로필 설정
 
   const response: ProfileResponse = {
@@ -35,7 +36,7 @@ export default async function setProfile(userid: string, data: Profile) {
   const imageList = /profile-image-0\d/g;
 
   // 데이터 검사
-  if (!(userid && data)) {
+  if (!(id && data)) {
     response.message = '로그인 정보가 없거나, 변경할 프로필 정보가 없습니다.';
     return response;
   }
@@ -64,9 +65,17 @@ export default async function setProfile(userid: string, data: Profile) {
     return response;
   }
 
+  const nicknameCheck = await isHaveNickname(nickname);
+  if (nicknameCheck) {
+    if (nicknameCheck._id !== id) {
+      response.message = '이미 사용 중인 닉네임입니다.';
+      return response;
+    }
+  }
+
   // 실행
   try {
-    const userRef = doc(C_user, userid);
+    const userRef = doc(C_user, id);
 
     await updateDoc(userRef, {
       profile: data,

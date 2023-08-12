@@ -12,12 +12,12 @@ function useUpdateProfile() {
   const navigate = useNavigate();
 
   const updateProfile = async (
-    userid: string | undefined | null,
+    id: string | undefined | null,
     data: Profile,
   ) => {
-    if (!userid) return;
+    if (!id) return;
     setIsPending(true); // 통신 시작
-    const response = await setProfile(userid, data);
+    const response = await setProfile(id, data);
 
     if (response.ok) {
       // 프로필 변경 성공 시 상태 업데이트
@@ -27,8 +27,7 @@ function useUpdateProfile() {
       navigate(-1);
     } else {
       if (typeof response.message === 'string') setError(response.message);
-      alert('Error! : ' + response.message);
-      navigate(-1);
+      // alert('Error! : ' + response.message);
       setIsPending(false); // 통신 종료
     }
   };

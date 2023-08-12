@@ -13,7 +13,7 @@ export default function SignUp() {
   useEffect(() => {
     if (auth.isLogin) {
       if (!auth.user?.profile) {
-        navigate('/editprofile');
+        navigate('/editprofile', { replace: true });
       } else {
         navigate('/survey');
       }

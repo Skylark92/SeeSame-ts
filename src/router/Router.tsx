@@ -30,7 +30,7 @@ export default function Router() {
         },
         {
           path: 'editprofile',
-          element: <EditProfile />,
+          element: auth.isLogin ? <EditProfile /> : <Navigate to='/' />,
         },
         {
           path: 'survey',
