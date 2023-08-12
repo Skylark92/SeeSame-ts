@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import { DocumentReference, Timestamp } from 'firebase/firestore';
 import { CustomResponse } from './response';
 import { UserData } from './user';
 
@@ -39,13 +39,17 @@ export interface CommentResponse extends CustomResponse {
   comment?: Comment;
 }
 
-export interface Comment {
+export interface CommentData {
   _id: string;
-  author: UserData;
+  author: DocumentReference;
   content: string;
   like: number;
   user: string[];
   createdAt: Date | Timestamp;
+}
+
+export interface Comment extends Omit<CommentData, 'author'> {
+  author: UserData;
 }
 
 type Choice = {

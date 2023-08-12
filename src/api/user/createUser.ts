@@ -36,7 +36,6 @@ export default async function createUser(data: User) {
 
   // 실행
   try {
-    console.log('data', data);
     const userRef = doc(C_user); // 자동 생성된 id를 참조하기 위함
     const hashed = SHA224(password).toString();
 

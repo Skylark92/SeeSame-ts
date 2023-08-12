@@ -4,13 +4,13 @@ import { RootState } from 'store/store';
 import { Comment } from 'api/type/survey';
 import CommentContext from 'context/CommentContext';
 import SurveyContext from 'context/SurveyContext';
-import getComments from 'api/survey/getComments';
+import getComments from 'api/survey/comment/getComments';
 import Field from '../Field';
 import Total from './Opinion/Total';
 import Best from './Opinion/Best';
 import Button from './Opinion/Button';
 import Content from './Opinion/Content';
-import DeleteComment from 'api/survey/DeleteComment';
+import DeleteComment from 'api/survey/comment/DeleteComment';
 
 export default function Opinion() {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -43,7 +43,6 @@ export default function Opinion() {
         const temp = [...comments];
         temp.splice(index, 1);
         setComments(temp);
-        console.log('여기는 오는지');
       } else {
         throw new Error('해당 댓글을 찾을 수 없습니다.');
       }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SurveyData } from 'api/type/survey';
 import { UserData } from 'api/type/user';
-import addComment from 'api/survey/addComment';
+import addComment from 'api/survey/comment/addComment';
 
 function useComment() {
   const [isPending, setIsPending] = useState<boolean>(false);

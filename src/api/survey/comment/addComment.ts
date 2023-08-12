@@ -20,9 +20,7 @@ export default async function addComment(
   try {
     const newComment = {
       _id: commentRef.id,
-      author: {
-        ...user,
-      },
+      author: doc(db, 'User', user._id),
       content,
       like: 0,
       user: [],
@@ -32,7 +30,12 @@ export default async function addComment(
     await setDoc(commentRef, newComment);
 
     response.ok = true;
-    response.comment = newComment;
+    response.comment = {
+      ...newComment,
+      author: {
+        ...user,
+      },
+    };
 
     return response;
   } catch (error) {
