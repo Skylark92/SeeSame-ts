@@ -7,6 +7,8 @@ export default function Join() {
   return (
     <p
       css={css`
+        font-family: 'NanumSquareAcr';
+        font-size: '0.875rem';
         width: fit-content;
         margin: 0 auto;
         margin-top: 1rem;

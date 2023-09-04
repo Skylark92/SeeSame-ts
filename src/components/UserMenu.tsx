@@ -70,6 +70,7 @@ export default function UserMenu() {
           width: 2.375rem;
           height: 2.375rem;
           border-radius: 50%;
+          outline: 0.1875rem solid rgba(0, 0, 0, 0.5);
 
           background-color: #d9d9d9;
           background-image: url(${profileSprites});

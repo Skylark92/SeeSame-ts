@@ -15,16 +15,17 @@ export default function Button({ variant = 'custom', ...props }: ButtonProps) {
         text-align: center;
         color: #000;
         margin: 0.1875rem auto;
-        outline: 0.1875rem solid rgba(0, 0, 0, 0.5);
+        // outline: 0.1875rem solid rgba(0, 0, 0, 0.5);
         border: none;
-        border-radius: 0.9375rem;
+        border-radius: 0.625rem;
+        filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25));
         ${VARIANTS[variant]}
 
         pointer-events: auto;
         cursor: pointer;
 
         &:disabled {
-          background: ${color.gray500};
+          background: ${color.gray300};
         }
       `}
       type='button'
@@ -36,12 +37,12 @@ export default function Button({ variant = 'custom', ...props }: ButtonProps) {
 const VARIANTS = {
   form: `
     background: ${color.green500};
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     width: 13.5rem;
     height: 2.875rem;
   `,
   survey: `
-    font-size: 1.375rem;
+    font-size: 1.25rem;
     width: 100%;
     max-width: 11.125rem;
     height: 4.75rem;

@@ -43,7 +43,9 @@ export default function Image({ imageIndex }: Props) {
           right: 0,
           background: `url(${modifyIcon})`,
           backgroundSize: '1.375rem 1.375rem',
+          backgroundRepeat: 'no-repeat',
           zIndex: 500,
+          outline: '0.1875rem solid rgba(0, 0, 0, 0.5)',
         }}
       />
       <div

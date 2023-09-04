@@ -1,8 +1,10 @@
 export const color = {
-  green500: 'linear-gradient(#bdff00, #38d600)',
+  // green500: 'linear-gradient(#bdff00, #38d600)',
+  green500: '#70FF00',
   green700: '#7EFF00',
   green900: 'linear-gradient(#80ff00, #3bb700)',
-  violet500: 'linear-gradient(#ffb0ff, #dc77ff)',
+  // violet500: 'linear-gradient(#ffb0ff, #dc77ff)',
+  violet500: '#DB73FF',
   violet700: '#E476FF',
   violet900: 'linear-gradient(#fd95ff, #8b29d8)',
   blue300: '#77c4ff',

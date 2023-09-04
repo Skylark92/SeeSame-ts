@@ -114,12 +114,7 @@ export default function Form() {
         <Input.TextField type='text' id='sign-up-answer' name='answer' />
       </Input>
       <ErrorMessage msg={validMsg || error} />
-      <Button
-        variant='form'
-        css={{ fontSize: '1.5rem' }}
-        disabled={isPending}
-        onClick={submitHandler}
-      >
+      <Button variant='form' disabled={isPending} onClick={submitHandler}>
         가입하기
       </Button>
     </form>

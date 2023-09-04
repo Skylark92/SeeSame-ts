@@ -86,6 +86,8 @@ export default function Modal({ isModal }: Props) {
               background-size: 19.6875rem 19.6875rem;
               width: 6.5625rem;
               height: 6.5625rem;
+
+              cursor: pointer;
             `}
           >
             <input

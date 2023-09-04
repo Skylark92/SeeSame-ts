@@ -6,10 +6,10 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   id: string;
   variant: 'small' | 'large';
   name?: string;
-  check?: string | null;
+  checked?: boolean;
 }
 
-export default function Radio({ id, name, variant, ...props }: Props) {
+export default function Radio({ id, name, variant, checked, ...props }: Props) {
   if (!variant) return; //
 
   const size =
@@ -27,7 +27,14 @@ export default function Radio({ id, name, variant, ...props }: Props) {
       }}
       {...props}
     >
-      <input type='radio' id={id} name={name} value={id} hidden />
+      <input
+        type='radio'
+        id={id}
+        name={name}
+        value={id}
+        checked={checked}
+        hidden
+      />
       <label
         htmlFor={id}
         css={css`
