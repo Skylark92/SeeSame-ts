@@ -18,7 +18,7 @@ export const font = {
   },
   input: {
     fontFamily: 'NanumSquareAcb',
-    fontSize: '1.25rem',
+    fontSize: '16px',
   },
   shadow: {
     textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',

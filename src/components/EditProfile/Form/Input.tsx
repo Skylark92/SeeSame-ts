@@ -48,7 +48,7 @@ export default function Input({ nickname, ...props }: InputProps) {
           height: 1.75rem;
           background: rgba(0, 0, 0, 0.1);
           padding: 0.3125rem 0.1875rem;
-          font-size: 1rem;
+          font-size: 16px;
           font-family: 'NanumSquareAcb';
           color: #fff;
           text-align: center;
@@ -81,7 +81,9 @@ export default function Input({ nickname, ...props }: InputProps) {
           right: '0.1875rem',
           background: `url(${modifyIcon})`,
           backgroundSize: '1.375rem 1.375rem',
+          backgroundRepeat: 'no-repeat',
           zIndex: 500,
+          outline: '0.1875rem solid rgba(0, 0, 0, 0.5)',
         }}
         onClick={() => setIsModify(!isModify)}
       />
