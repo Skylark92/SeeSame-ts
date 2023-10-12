@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
@@ -11,18 +12,22 @@ import Best from './Opinion/Best';
 import Button from './Opinion/Button';
 import Content from './Opinion/Content';
 import DeleteComment from 'api/survey/comment/DeleteComment';
+import Loading from 'components/Loading';
 
 export default function Opinion() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [isMore, setIsMore] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const survey = useContext(SurveyContext)?.data;
   const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
     if (survey) {
+      setIsLoading(true);
       getComments(survey).then((res) => {
         setComments(res as Comment[]);
         // console.log(res); // 콘솔
+        setIsLoading(false);
       });
     }
   }, []);
@@ -55,10 +60,16 @@ export default function Opinion() {
     >
       <Field css={{ position: 'relative' }}>
         <Field.Title>BEST 댓글</Field.Title>
-        <Button onClick={() => setIsMore(true)}>댓글 더 보기</Button>
-        <Best data={comments[0]} index={0} />
-        <Best data={comments[1]} index={1} />
-        <Best data={comments[2]} index={2} />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <React.Fragment>
+            <Button onClick={() => setIsMore(true)}>댓글 더 보기</Button>
+            <Best data={comments[0]} index={0} />
+            <Best data={comments[1]} index={1} />
+            <Best data={comments[2]} index={2} />
+          </React.Fragment>
+        )}
       </Field>
       {isMore && (
         <Total>
