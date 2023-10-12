@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { SurveyData } from 'api/type/survey';
 import Content from 'components/Survey/Content';
 import Slide from 'components/Survey/Slide';
+import UserMenu from 'components/UserMenu';
 
 export default function Survey() {
   const survey = useLoaderData() as SurveyData[];
@@ -59,6 +60,7 @@ export default function Survey() {
         // }
       `}
     >
+      <UserMenu />
       <Slide>
         {survey.map((s, i) => (
           <Content key={s._id} survey={s} surveyRef={refs.current[i]} />
