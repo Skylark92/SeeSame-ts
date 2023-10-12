@@ -46,39 +46,39 @@ const mq = `
   --card-margin: 52px;
 }
 
-@media (max-width: 390px), (max-height: 844px) {
+@media (max-width: 390px) {
   font-size: 16px;
 }
 
-@media (max-width: 360px), (max-height: 816px) {
+@media (max-width: 360px) {
   font-size: 15px;
 }
 
-@media (max-width: 320px), (max-height: 768px) {
+@media (max-width: 320px) {
   font-size: 14px;
 }
 
-@media (max-width: 300px), (max-height: 720px) {
+@media (max-width: 300px) {
   font-size: 13px;
 }
 
-@media (max-width: 280px), (max-height: 672px) {
+@media (max-width: 280px) {
   font-size: 12px;
 }
 
-@media (max-width: 260px), (max-height: 624px) {
+@media (max-width: 260px) {
   font-size: 11px;
 }
 
-@media (max-width: 240px), (max-height: 576px) {
+@media (max-width: 240px) {
   font-size: 10px;
 }
 
-@media (max-width: 220px), (max-height: 528px) {
+@media (max-width: 220px) {
   font-size: 9px;
 }
 
-@media (max-width: 200px), (max-height: 480px) {
+@media (max-width: 200px) {
   font-size: 8px;
 }
 `;
