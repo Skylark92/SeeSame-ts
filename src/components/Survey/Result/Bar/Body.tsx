@@ -14,7 +14,7 @@ export default function Body({ ratio, ...props }: BodyProps) {
         width: 100%;
         // line-height: 1.125rem;
         text-align: ${ratio === undefined ? 'center' : 'initial'};
-        background: ${ratio === undefined ? 'gray' : color.green900};
+        background: ${ratio === undefined ? 'gray' : color.green500};
 
         flex: 1 1 ${ratio === undefined ? 100 : ratio < 10 ? 10 : ratio}%;
 

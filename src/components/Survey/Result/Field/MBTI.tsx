@@ -5,6 +5,7 @@ import SurveyContext from 'context/SurveyContext';
 import Bar from '../Bar';
 import Field from '../Field';
 import percent from 'util/percent';
+import BestMBTI from './MBTI/BestMBTI';
 
 export default function MBTI() {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -24,7 +25,7 @@ export default function MBTI() {
   if (ratioA === undefined || ratioB === undefined) return;
 
   return (
-    <Field>
+    <Field css={{ paddingBottom: '0.4375rem' }}>
       <Field.Title>MBTI</Field.Title>
       <div css={{ display: 'flex', gap: '0.4375rem' }}>
         <span css={{ fontSize: '0.75rem', lineHeight: '1.125rem' }}>
@@ -32,6 +33,7 @@ export default function MBTI() {
         </span>
         <Bar choiceA={ratioA} choiceB={ratioB} />
       </div>
+      <BestMBTI />
     </Field>
   );
 }
