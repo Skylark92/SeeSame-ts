@@ -6,6 +6,7 @@ export interface User {
   question: string;
   answer: string;
   profile?: Profile;
+  admin?: boolean;
 }
 
 export interface UserData extends User {

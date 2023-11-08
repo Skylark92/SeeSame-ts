@@ -53,10 +53,10 @@ export default function UserMenu() {
       id='user-menu'
       css={css`
         position: absolute;
-        width: 2.375rem;
-        height: 2.375rem;
-        top: calc(var(--card-margin) + 0.4375rem);
-        left: 1.1875rem;
+        width: 2.625rem;
+        height: 2.625rem;
+        top: calc(var(--card-margin) + 0.5rem);
+        left: 0.875rem;
         z-index: 15;
 
         @media (min-width: 42.375rem) {
@@ -67,14 +67,14 @@ export default function UserMenu() {
       <Button
         css={css`
           display: block;
-          width: 2.375rem;
-          height: 2.375rem;
+          width: 2.625rem;
+          height: 2.625rem;
           border-radius: 50%;
-          outline: 0.1875rem solid rgba(0, 0, 0, 0.5);
+          margin: 0;
 
-          background-color: #d9d9d9;
+          background-color: transparent;
           background-image: url(${profileSprites});
-          background-size: 7.125rem 7.125rem;
+          background-size: 7.875rem 7.875rem;
           background-position: ${profile[profileIndex]};
           background-repeat: no-repeat;
         `}
@@ -133,12 +133,12 @@ export default function UserMenu() {
 
 const profile = {
   'profile-image-01': '0 0;',
-  'profile-image-02': '0 -2.375rem',
-  'profile-image-03': '0 -4.75rem',
-  'profile-image-04': '-2.375rem 0',
-  'profile-image-05': '-2.375rem -2.375rem',
-  'profile-image-06': '-2.375rem -4.75rem',
-  'profile-image-07': '-4.75rem 0',
-  'profile-image-08': '-4.75rem -2.375rem',
-  'profile-image-09': '-4.75rem -4.75rem',
+  'profile-image-02': '0 -2.625rem',
+  'profile-image-03': '0 -5.25rem',
+  'profile-image-04': '-2.625rem 0',
+  'profile-image-05': '-2.625rem -2.625rem',
+  'profile-image-06': '-2.625rem -5.25rem',
+  'profile-image-07': '-5.25rem 0',
+  'profile-image-08': '-5.25rem -2.625rem',
+  'profile-image-09': '-5.25rem -5.25rem',
 };

@@ -51,11 +51,9 @@ export default function Result({ handler, ...props }: ResultProps) {
       <Button
         variant='close'
         css={{
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          borderRadius: '50%',
           position: 'absolute',
-          top: '0.375rem',
-          right: '0.375rem',
+          top: '0.875rem',
+          right: '0.875rem',
         }}
         onClick={handler}
       />
