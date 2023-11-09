@@ -27,7 +27,8 @@ export default function AgeBar({ age }: AgeProps) {
       manA !== undefined &&
       manB !== undefined &&
       womanA !== undefined &&
-      womanB !== undefined
+      womanB !== undefined &&
+      age !== undefined
     )
   )
     return; // 없으면 렌더링하지 않는다.
@@ -42,11 +43,11 @@ export default function AgeBar({ age }: AgeProps) {
         backgroundColor: 'transparent',
       }}
     >
-      <Bar choiceA={manA} choiceB={manB} />
+      <Bar choiceA={manA} choiceB={manB} about={'남자,' + age} />
       <h5 css={{ fontSize: '0.8125rem', zIndex: '3', flex: '0 0 2.75rem' }}>
         {age}
       </h5>
-      <Bar choiceA={womanA} choiceB={womanB} />
+      <Bar choiceA={womanA} choiceB={womanB} about={'여자,' + age} />
     </div>
   );
 }

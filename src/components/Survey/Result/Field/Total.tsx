@@ -23,7 +23,7 @@ export default function Total() {
           &nbsp; B : {survey?.choiceB}
         </span>
       </Field.Title>
-      <Bar choiceA={aRatio || 0} choiceB={bRatio || 0} />
+      <Bar choiceA={aRatio || 0} choiceB={bRatio || 0} about='total' />
     </Field>
   );
 }

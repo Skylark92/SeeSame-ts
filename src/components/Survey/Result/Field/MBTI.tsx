@@ -31,7 +31,7 @@ export default function MBTI() {
         <span css={{ fontSize: '0.75rem', lineHeight: '1.125rem' }}>
           {user?.profile?.MBTI}
         </span>
-        <Bar choiceA={ratioA} choiceB={ratioB} />
+        <Bar choiceA={ratioA} choiceB={ratioB} about='MBTI' />
       </div>
       <BestMBTI />
     </Field>

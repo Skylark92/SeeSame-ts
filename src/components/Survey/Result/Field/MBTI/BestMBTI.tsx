@@ -30,7 +30,7 @@ export default function BestMBTI() {
         width: '100%',
         textAlign: 'right',
         fontSize: '12px',
-        marginTop: '0.4375rem',
+        marginTop: '0.5625rem',
       }}
     >
       <span>
