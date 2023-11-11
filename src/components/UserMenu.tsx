@@ -59,8 +59,8 @@ export default function UserMenu() {
         left: 0.875rem;
         z-index: 15;
 
-        @media (min-width: 42.375rem) {
-          left: calc((100% - 42.375rem) / 2 + 0.59375rem);
+        @media (min-width: 44.1875rem) {
+          left: calc((100vw - 42.375rem) / 2);
         }
       `}
     >

@@ -22,12 +22,10 @@ export default function Image({ imageIndex }: Props) {
   return (
     <figure
       css={{
-        width: '6.5625rem',
-        height: '6.5625rem',
+        width: '7.625rem',
+        height: '7.625rem',
         position: 'relative',
         margin: '3px auto',
-        background: '#d9d9d9',
-        outline: '3px solid rgba(0, 0, 0, 0.4)',
         borderRadius: '50%',
       }}
       onClick={modalHandler}
@@ -39,19 +37,19 @@ export default function Image({ imageIndex }: Props) {
           height: '1.375rem',
           borderRadius: '0.3125rem',
           position: 'absolute',
-          top: 0,
-          right: 0,
+          top: '1.125rem',
+          right: '0.25rem',
           background: `url(${modifyIcon})`,
           backgroundSize: '1.375rem 1.375rem',
           backgroundRepeat: 'no-repeat',
           zIndex: 500,
-          outline: '0.1875rem solid rgba(0, 0, 0, 0.5)',
+          outline: '0.125rem solid rgba(0, 0, 0, 0.6)',
         }}
       />
       <div
         css={{
           background: `url(${sprites}) ${position[imageIndex].top} ${position[imageIndex].left}`,
-          backgroundSize: '19.6875rem 19.6875rem',
+          backgroundSize: '22.875rem 22.875rem',
           width: '100%',
           height: '100%',
         }}

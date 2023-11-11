@@ -9,11 +9,25 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   checked?: boolean;
 }
 
+interface LabelColor {
+  [key: string]: string;
+}
+
 export default function Radio({ id, name, variant, checked, ...props }: Props) {
   if (!variant) return; //
 
   const size =
     variant === 'small' ? '4.25rem' : variant === 'large' ? '8.625rem' : 0;
+
+  const labelColor: LabelColor = {
+    남자: '#00d1ff',
+    여자: '#ff5e84',
+    '10대': '#ffd977',
+    '20대': '#ffcc4a',
+    '30대': '#fec42f',
+    '40대': '#fdba0d',
+    청춘: '#fff500',
+  };
 
   return (
     <div
@@ -52,7 +66,7 @@ export default function Radio({ id, name, variant, checked, ...props }: Props) {
           background: ${color.gray700};
 
           input:checked + & {
-            background: ${color.blue500};
+            background: ${labelColor[id] || '#f7fa81'};
           }
         `}
       >

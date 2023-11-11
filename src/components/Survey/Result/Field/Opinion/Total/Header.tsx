@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import CommentContext from 'context/CommentContext';
 import Button from 'components/Button';
+import XIcon from 'assets/X-icon.svg';
 
 export default function Header() {
   const context = useContext(CommentContext);
@@ -35,7 +36,18 @@ export default function Header() {
           {(comments ? comments.length : 0).toLocaleString()}
         </small>
       </h3>
-      <Button variant='close' css={{ flexGrow: 0 }} onClick={closeHandler} />
+      <Button
+        variant='custom'
+        css={{
+          flexGrow: 0,
+          backgroundColor: 'transparent',
+          backgroundImage: `url(${XIcon})`,
+          backgroundSize: 'cover',
+          width: '1.375rem',
+          height: '1.375rem',
+        }}
+        onClick={closeHandler}
+      />
     </header>
   );
 }
