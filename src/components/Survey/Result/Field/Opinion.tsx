@@ -65,9 +65,23 @@ export default function Opinion() {
         ) : (
           <React.Fragment>
             <Button onClick={() => setIsMore(true)}>댓글 더 보기</Button>
-            <Best data={comments[0]} index={0} />
-            <Best data={comments[1]} index={1} />
-            <Best data={comments[2]} index={2} />
+            {comments
+              .filter((_, i) => i < 3)
+              .map((comment, i) => {
+                return (
+                  <>
+                    <Best data={comment} index={i} key={'best' + comment._id} />
+                    {i < 2 && (
+                      <hr
+                        css={{
+                          margin: '0.125rem 0 0.5rem 0',
+                          borderColor: 'rgba(255, 255, 255, 0.25)',
+                        }}
+                      />
+                    )}
+                  </>
+                );
+              })}
           </React.Fragment>
         )}
       </Field>
