@@ -7,6 +7,9 @@ import Total from './Result/Field/Total';
 import Gender from './Result/Field/Gender';
 import MBTI from './Result/Field/MBTI';
 import Opinion from './Result/Field/Opinion';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import Login from './Result/Login';
 
 interface ResultProps extends PropsWithChildren {
   handler: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -25,6 +28,8 @@ to {
 `;
 
 export default function Result({ handler, ...props }: ResultProps) {
+  const isLogin = useSelector((state: RootState) => state.auth).isLogin;
+
   return (
     <article
       css={css`
@@ -62,6 +67,7 @@ export default function Result({ handler, ...props }: ResultProps) {
       <Gender />
       <MBTI />
       <Opinion />
+      {isLogin || <Login />}
     </article>
   );
 }
