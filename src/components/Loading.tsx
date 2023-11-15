@@ -20,7 +20,7 @@ export default function Loading() {
         width: '4.25rem',
         height: '4.25rem',
         overflow: 'hidden',
-        margin: '0 auto',
+        margin: '2.3125rem auto',
         position: 'relative',
         flexShrink: '0',
       }}
