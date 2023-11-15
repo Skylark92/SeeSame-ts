@@ -7,7 +7,7 @@ import Title from 'components/WelcomeView/Title';
 export default function WelcomeView() {
   return (
     <main css={{ overflow: 'auto' }} id='welcome'>
-      <Card css={{ justifyContent: 'center', flexWrap: 'wrap' }}>
+      <Card css={{ justifyContent: 'center', flexWrap: 'nowrap' }}>
         <Title />
         <Logo />
         <Greetings />
