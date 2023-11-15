@@ -5,12 +5,15 @@ import { SurveyData } from 'api/type/survey';
 import Content from 'components/Survey/Content';
 import Slide from 'components/Survey/Slide';
 import UserMenu from 'components/UserMenu';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 export default function Survey() {
   const survey = useLoaderData() as SurveyData[];
   const refs = useRef<RefObject<HTMLElement>[]>([]);
   const params = useParams();
   const navigate = useNavigate();
+  const isLogin = useSelector((state: RootState) => state.auth.isLogin);
 
   // 서베이 갯수만큼 ref 생성
   survey.forEach((_, i) => (refs.current[i] = createRef<HTMLElement>()));
@@ -60,7 +63,7 @@ export default function Survey() {
         // }
       `}
     >
-      <UserMenu />
+      {isLogin && <UserMenu />}
       <Slide>
         {survey.map((s, i) => (
           <Content key={s._id} survey={s} surveyRef={refs.current[i]} />

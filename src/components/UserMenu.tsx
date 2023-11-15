@@ -40,6 +40,7 @@ export default function UserMenu() {
     : 'profile-image-01';
 
   const onClickHandler = () => {
+    if (!user) return;
     setDropdown(!dropdown);
   };
 
@@ -57,7 +58,7 @@ export default function UserMenu() {
         height: 2.625rem;
         top: calc(var(--card-margin) + 0.5rem);
         left: 0.875rem;
-        z-index: 15;
+        z-index: 100;
 
         @media (min-width: 44.1875rem) {
           left: calc((100vw - 42.375rem) / 2);
