@@ -1,9 +1,22 @@
 import { css } from '@emotion/react';
 import Button from 'components/Button';
 import { Input } from 'components/Input';
+import useLogin from 'hooks/useLogin';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Login() {
+  const { userLogin, error, isPending } = useLogin();
+  const idRef = useRef<HTMLInputElement>(null);
+  const passRef = useRef<HTMLInputElement>(null);
+
+  const submitHandler = () => {
+    const id = idRef.current ? idRef.current.value : '';
+    const pass = passRef.current ? passRef.current.value : '';
+
+    userLogin(id, pass);
+  };
+
   return (
     <form
       css={css`
@@ -58,10 +71,18 @@ export default function Login() {
         답도 보실 수 있습니다.
       </p>
       <Input css={{ width: 'calc(100% - 38px)' }}>
-        <Input.TextField css={{ fontSize: '1.25rem' }} placeholder='아이디' />
+        <Input.TextField
+          css={{ fontSize: '1.25rem' }}
+          placeholder='아이디'
+          ref={idRef}
+        />
       </Input>
       <Input css={{ width: 'calc(100% - 38px)' }}>
-        <Input.TextField css={{ fontSize: '1.25rem' }} placeholder='비밀번호' />
+        <Input.TextField
+          css={{ fontSize: '1.25rem' }}
+          placeholder='비밀번호'
+          ref={passRef}
+        />
       </Input>
       <p
         css={{
@@ -71,15 +92,31 @@ export default function Login() {
           fontSize: '0.875rem',
         }}
       >
-        비밀번호가 틀렸습니다.
+        {error}
       </p>
-      <Button variant='form'>로그인</Button>
-      <Button
-        variant='form'
-        css={{ fontSize: '1.125rem', height: '2.25rem', background: '#24E5FF' }}
+      <Button variant='form' onClick={submitHandler} disabled={isPending}>
+        로그인
+      </Button>
+      <Link
+        to='/signup'
+        css={{
+          fontFamily: 'NanumSquareAceb',
+          fontSize: '1.125rem',
+          textAlign: 'center',
+          color: '#000',
+          width: '13.5rem',
+          height: '2.25rem',
+          lineHeight: '2.25rem',
+          background: '#24E5FF',
+          border: 'none',
+          borderRadius: '0.625rem',
+          margin: '0.1875rem auto',
+          filter: 'drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25))',
+          pointerEvents: 'auto',
+        }}
       >
         회원가입 하기
-      </Button>
+      </Link>
       <Link
         to='/signup'
         css={{
