@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, KeyboardEvent, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN } from 'store/authSlice';
@@ -71,12 +71,25 @@ export default function Form() {
     }
   };
 
+  const submitHandler = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
+  const keydownHandler = (event: KeyboardEvent<HTMLFormElement>) => {
+    console.log(event.key);
+    if (event.key === 'Enter') {
+      loginStepHandler();
+    }
+  };
+
   return (
     <form
       css={{
         maxWidth: '13.5rem',
         margin: '1.25rem auto 0',
       }}
+      onSubmit={submitHandler}
+      onKeyDown={keydownHandler}
     >
       <Input css={{ marginTop: isCorrectId ? '0' : '3.375rem' }}>
         <Input.TextField
