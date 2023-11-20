@@ -113,10 +113,10 @@ export default function Form() {
         `}
       >
         <Input label='선택 1'>
-          <Input.TextField placeholder='가능' />
+          <Input.TextField placeholder='가능' name='choiceA' />
         </Input>
         <Input label='선택 2'>
-          <Input.TextField placeholder='불가능' />
+          <Input.TextField placeholder='불가능' name='choiceB' />
         </Input>
       </div>
       <label
