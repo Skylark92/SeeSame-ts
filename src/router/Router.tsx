@@ -11,6 +11,7 @@ import WelcomeView from 'pages/WelcomeView';
 import SignUp from 'pages/SignUp';
 import EditProfile from 'pages/EditProfile';
 import Survey from 'pages/Survey';
+import AddSurvey from 'pages/AddSurvey';
 
 export default function Router() {
   const auth = useSelector((state: RootState) => state.auth);
@@ -41,6 +42,10 @@ export default function Router() {
               path: ':id',
             },
           ],
+        },
+        {
+          path: 'add',
+          element: auth.user?.admin ? <AddSurvey /> : <Navigate to='/error' />,
         },
       ],
     },

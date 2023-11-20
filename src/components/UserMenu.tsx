@@ -124,6 +124,11 @@ export default function UserMenu() {
                 정보 수정
               </Link>
             </li>
+            {user?.admin && (
+              <li>
+                <Link to='/add'>이슈 등록</Link>
+              </li>
+            )}
             <li onClick={logout}>로그 아웃</li>
           </ul>
         </nav>

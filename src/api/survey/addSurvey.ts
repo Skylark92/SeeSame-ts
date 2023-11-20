@@ -2,13 +2,21 @@ import { C_survey } from 'api/core';
 import { SurveyResponse, Tags } from 'api/type/survey';
 import { doc, setDoc } from 'firebase/firestore';
 
-export default async function addSurvey(
-  title: string,
-  content: string,
-  tag: Tags = [],
+interface Parameters {
+  title: string;
+  content: string;
+  tag: Tags;
+  choiceA: string;
+  choiceB: string;
+}
+
+export default async function addSurvey({
+  title,
+  content,
+  tag = [],
   choiceA = '가능',
   choiceB = '불가능',
-): Promise<SurveyResponse> {
+}: Parameters): Promise<SurveyResponse> {
   // 새로운 서베이를 추가
 
   const response: SurveyResponse = {
