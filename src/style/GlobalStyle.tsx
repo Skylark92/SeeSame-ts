@@ -28,6 +28,10 @@ export default function GlobalStyle() {
           ${mq}
         }
 
+        body {
+          transition: background 1.5s;
+        }
+
         a {
           color: inherit;
           text-decoration: none;

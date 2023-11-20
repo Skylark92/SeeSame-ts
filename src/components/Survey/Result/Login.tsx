@@ -3,12 +3,15 @@ import Button from 'components/Button';
 import { Input } from 'components/Input';
 import useLogin from 'hooks/useLogin';
 import { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RootState } from 'store/store';
 
 export default function Login() {
   const { userLogin, error, isPending } = useLogin();
   const idRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
+  const cardColor = useSelector((state: RootState) => state.color.cardColor);
 
   const submitHandler = () => {
     const id = idRef.current ? idRef.current.value : '';
@@ -47,11 +50,12 @@ export default function Login() {
           bottom: 0;
           left: 0;
           right: 0;
-          background: rgba(38, 143, 223, 0.8);
+          background: ${cardColor}cc;
           backdrop-filter: blur(2px);
           -webkit-backdrop-filter: blur(2px);
           z-index: 25;
           border-radius: 0 0 1.25rem 1.25rem;
+          transition: background 1.5s;
         }
       `}
     >

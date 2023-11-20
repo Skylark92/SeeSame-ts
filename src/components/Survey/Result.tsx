@@ -1,6 +1,5 @@
 import { css, keyframes } from '@emotion/react';
 import { PropsWithChildren } from 'react';
-import { color } from 'style/color';
 import Button from 'components/Button';
 import Brief from './Result/Brief';
 import Total from './Result/Field/Total';
@@ -29,13 +28,14 @@ to {
 
 export default function Result({ handler, ...props }: ResultProps) {
   const isLogin = useSelector((state: RootState) => state.auth).isLogin;
+  const cardColor = useSelector((state: RootState) => state.color.cardColor);
 
   return (
     <article
       css={css`
         width: 100%;
         height: 100%;
-        background: ${color.blue700};
+        background: ${cardColor};
         border-radius: 1.25rem;
         position: absolute;
         top: 0;
@@ -50,6 +50,7 @@ export default function Result({ handler, ...props }: ResultProps) {
         font-family: NanumSquareAcr;
 
         animation: ${slideIn} 0.5s ease;
+        transition: background 1.5s;
       `}
       {...props}
     >

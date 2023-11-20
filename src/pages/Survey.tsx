@@ -5,8 +5,9 @@ import { SurveyData } from 'api/type/survey';
 import Content from 'components/Survey/Content';
 import Slide from 'components/Survey/Slide';
 import UserMenu from 'components/UserMenu';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
+import { CHANGE } from 'store/colorSlice';
 
 export default function Survey() {
   const survey = useLoaderData() as SurveyData[];
@@ -14,6 +15,7 @@ export default function Survey() {
   const params = useParams();
   const navigate = useNavigate();
   const isLogin = useSelector((state: RootState) => state.auth.isLogin);
+  const dispatch = useDispatch();
 
   // 서베이 갯수만큼 ref 생성
   survey.forEach((_, i) => (refs.current[i] = createRef<HTMLElement>()));
@@ -27,8 +29,38 @@ export default function Survey() {
           const id = target.dataset.sid;
           if (params.id !== id) {
             navigate(`/survey/${id}`, { replace: true });
-          }
-          //
+          } // 주소 일치
+
+          const majorTag = target.dataset.tag?.split(',')[0];
+          if (majorTag === 'COUPLE' || majorTag === 'HEART')
+            dispatch(
+              CHANGE({
+                cardColor: '#ea6f8d',
+                backgroundColor: '#ffa6bc',
+              }),
+            );
+          else if (majorTag === 'DISPUTE' || majorTag === 'FOOD')
+            dispatch(
+              CHANGE({
+                cardColor: '#7e5ed9',
+                backgroundColor: '#ce9cf6',
+              }),
+            );
+          else if (majorTag === 'PUBLIC')
+            dispatch(
+              CHANGE({
+                cardColor: '#99e150',
+                backgroundColor: '#34a300',
+              }),
+            );
+          else
+            dispatch(
+              CHANGE({
+                cardColor: '#268fdf',
+                backgroundColor: '#6bbfff',
+              }),
+            );
+          // 색상 일치
         }
       });
     },

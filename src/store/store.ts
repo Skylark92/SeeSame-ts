@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './authSlice';
+import colorReducer from './colorSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -15,6 +16,7 @@ const persist = persistReducer(persistConfig, authReducer);
 const store = configureStore({
   reducer: {
     auth: persist,
+    color: colorReducer,
   },
 });
 
