@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import icons from 'assets/survey-icon-sprites.png';
 
 export default function Logo() {
-  const [counter, setCounter] = useState<number>(0);
+  const [counter, setCounter] = useState<number>(6);
 
   useEffect(() => {
     setTimeout(() => {
