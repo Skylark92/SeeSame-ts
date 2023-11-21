@@ -15,21 +15,11 @@ export default function Form() {
     content: '',
     choiceA: '가능',
     choiceB: '불가능',
-    tag: ['BASIC'] as Tags,
+    tag: ['밸런스'] as Tags,
   });
   const navigate = useNavigate();
 
-  const tags = [
-    'BASIC',
-    'COUPLE',
-    'DISPUTE',
-    'EMOJI',
-    'FOOD',
-    'HEART',
-    'HOT',
-    'PUBLIC',
-    'SESAME',
-  ];
+  const tags = ['밸런스', '호불호', 'VS', '음식', '사랑', '커플'];
 
   const inputHandler = (event: ChangeEvent<HTMLFormElement>) => {
     if (event.target.name === 'tag') {

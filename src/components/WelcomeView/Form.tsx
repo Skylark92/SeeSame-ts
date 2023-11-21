@@ -76,7 +76,6 @@ export default function Form() {
   };
 
   const keydownHandler = (event: KeyboardEvent<HTMLFormElement>) => {
-    console.log(event.key);
     if (event.key === 'Enter') {
       loginStepHandler();
     }

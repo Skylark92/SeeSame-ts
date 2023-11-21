@@ -20,16 +20,7 @@ export interface SurveyData {
 
 export type Tags = Tag[];
 
-export type Tag =
-  | 'BASIC'
-  | 'COUPLE'
-  | 'DISPUTE'
-  | 'EMOJI'
-  | 'FOOD'
-  | 'HEART'
-  | 'HOT'
-  | 'PUBLIC'
-  | 'SESAME';
+export type Tag = '밸런스' | '호불호' | 'VS' | '음식' | '사랑' | '커플';
 
 export interface SurveyResponse extends CustomResponse {
   survey?: SurveyData;
