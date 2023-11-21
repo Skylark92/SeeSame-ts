@@ -32,21 +32,21 @@ export default function Survey() {
           } // 주소 일치
 
           const majorTag = target.dataset.tag?.split(',')[0];
-          if (majorTag === 'COUPLE' || majorTag === 'HEART')
+          if (majorTag === '사랑' || majorTag === '커플')
             dispatch(
               CHANGE({
                 cardColor: '#ea6f8d',
                 backgroundColor: '#ffa6bc',
               }),
             );
-          else if (majorTag === 'DISPUTE' || majorTag === 'FOOD')
+          else if (majorTag === 'VS' || majorTag === '음식')
             dispatch(
               CHANGE({
                 cardColor: '#7e5ed9',
                 backgroundColor: '#ce9cf6',
               }),
             );
-          else if (majorTag === 'PUBLIC')
+          else if (majorTag === '호불호')
             dispatch(
               CHANGE({
                 cardColor: '#99e150',
