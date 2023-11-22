@@ -39,7 +39,8 @@ export default function Form() {
 
     if (response.ok) {
       alert('등록이 완료 되었습니다');
-      navigate(-1);
+      // navigate(-1);
+      location.reload();
     } else {
       alert('등록에 실패했습니다!');
     }
