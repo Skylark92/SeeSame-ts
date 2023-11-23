@@ -3,7 +3,6 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
-import { surveyLoader } from './loader';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import App from 'App';
@@ -36,7 +35,6 @@ export default function Router() {
         {
           path: 'survey',
           element: <Survey />,
-          loader: surveyLoader,
           children: [
             {
               path: ':id',

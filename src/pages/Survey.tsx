@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { RefObject, createRef, useEffect, useRef } from 'react';
-import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
+import { RefObject, createRef, useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SurveyData } from 'api/type/survey';
 import Content from 'components/Survey/Content';
 import Slide from 'components/Survey/Slide';
@@ -8,14 +8,35 @@ import UserMenu from 'components/UserMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { CHANGE } from 'store/colorSlice';
+import getSurveys from 'api/survey/getSurveys';
 
 export default function Survey() {
-  const survey = useLoaderData() as SurveyData[];
+  const [survey, setSurvey] = useState<SurveyData[]>([]);
   const refs = useRef<RefObject<HTMLElement>[]>([]);
   const params = useParams();
   const navigate = useNavigate();
   const isLogin = useSelector((state: RootState) => state.auth.isLogin);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    getSurveys().then((surveys) => {
+      for (let i = surveys.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [surveys[i], surveys[j]] = [surveys[j], surveys[i]];
+      }
+
+      if (params && surveys.some((survey) => survey._id === params.id)) {
+        // 주소 공유 시 해당 서베이 가장 상단 노출
+        const targetIndex = surveys.findIndex(
+          (survey) => survey._id === params.id,
+        );
+
+        [surveys[0], surveys[targetIndex]] = [surveys[targetIndex], surveys[0]];
+      }
+      setSurvey(surveys);
+    });
+  }, []);
 
   // 서베이 갯수만큼 ref 생성
   survey.forEach((_, i) => (refs.current[i] = createRef<HTMLElement>()));

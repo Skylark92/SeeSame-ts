@@ -1,7 +1,8 @@
 import { C_survey } from 'api/core';
+import { SurveyData } from 'api/type/survey';
 import { getDocs, orderBy, query } from 'firebase/firestore';
 
-export default async function getSurveys(): Promise<unknown[]> {
+export default async function getSurveys(): Promise<SurveyData[]> {
   // 서베이 전체 목록 가져오기
 
   const surveyList: unknown[] = [];
@@ -12,5 +13,5 @@ export default async function getSurveys(): Promise<unknown[]> {
     surveyList.push(doc.data());
   });
 
-  return surveyList;
+  return surveyList as SurveyData[];
 }
