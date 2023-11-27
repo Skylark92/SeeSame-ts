@@ -95,6 +95,7 @@ export default function UserMenu() {
 
             position: absolute;
             top: 4.125rem;
+            left: 0.5625rem;
 
             animation: ${dropdown ? slideFadeIn : slideFadeOut} 0.4s ease;
             animation-fill-mode: forwards;
