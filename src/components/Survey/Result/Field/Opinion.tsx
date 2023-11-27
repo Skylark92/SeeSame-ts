@@ -26,7 +26,6 @@ export default function Opinion() {
       setIsLoading(true);
       getComments(survey).then((res) => {
         setComments(res as Comment[]);
-        // console.log(res); // 콘솔
         setIsLoading(false);
       });
     }
@@ -59,12 +58,25 @@ export default function Opinion() {
       value={{ data: comments, setData: setComments, isMore, setIsMore }}
     >
       <Field css={{ position: 'relative', padding: '10px 5px 3px' }}>
+        <Button onClick={() => setIsMore(true)}>
+          {comments.length < 1 ? '댓글 작성하기' : '댓글 더 보기'}
+        </Button>
         <Field.Title css={{ margin: '-1rem auto 0' }}>BEST 댓글</Field.Title>
         {isLoading ? (
           <Loading />
+        ) : comments.length < 1 ? (
+          <p
+            css={{
+              width: '100%',
+              height: '4.25rem',
+              lineHeight: '4.25rem',
+              fontSize: '0.75rem',
+            }}
+          >
+            아직 작성된 댓글이 없습니다.
+          </p>
         ) : (
           <React.Fragment>
-            <Button onClick={() => setIsMore(true)}>댓글 더 보기</Button>
             {comments
               .filter((_, i) => i < 3)
               .map((comment, i) => {
