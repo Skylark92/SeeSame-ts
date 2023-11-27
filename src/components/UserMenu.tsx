@@ -6,16 +6,19 @@ import { RootState } from 'store/store';
 import { LOGOUT } from 'store/authSlice';
 import Button from './Button';
 import profileSprites from 'assets/profile-image-sprites.png';
+import editProfileIcon from 'assets/edit-profile-icon.svg';
+import logoutIcon from 'assets/logout-icon.svg';
+import seriesIcon from 'assets/3eries-icon.svg';
 
 const slideFadeIn = keyframes`
 from {
   opacity: 0;
-  transform: translateY(-100%);
+  transform: translateY(-25%);
 }
 
 to {
   opacity: 1;
-  transform: translateY(0%);
+  transform: translateY(0);
 }
 `;
 
@@ -24,7 +27,7 @@ const slideFadeOut = keyframes`
     transform: traslateY(0);
   }
   100% {
-    transform: translateY(-100%);
+    transform: translateY(-25%);
   }
 `;
 
@@ -84,52 +87,97 @@ export default function UserMenu() {
       {dropdown && (
         <nav
           css={css`
-            width: 100%;
-            overflow: hidden;
+            width: 124px;
+            padding: 3px;
+            border-radius: 10px;
+            outline: 3px solid rgba(0, 0, 0, 0.4);
+            background: #fff;
 
             position: absolute;
-            top: 2.375rem;
+            top: 4.125rem;
 
-            & > ul {
-              animation: ${dropdown ? slideFadeIn : slideFadeOut} 0.4s ease;
-              animation-fill-mode: forwards;
+            animation: ${dropdown ? slideFadeIn : slideFadeOut} 0.4s ease;
+            animation-fill-mode: forwards;
+
+            &::before {
+              content: '';
+              position: absolute;
+              border-style: solid;
+              border-width: 0 0.625rem 1.25rem 0.625rem;
+              border-color: rgba(0, 0, 0, 0.4) transparent;
+              display: block;
+              width: 0;
+              z-index: 0;
+              top: -1.3125rem;
+              right: 5.6875rem;
             }
+    
+            &::after {
+              content: '';
+              position: absolute;
+              border-style: solid;
+              border-width: 0 0.5rem 0.875rem 0.5rem;
+              border-color: #fff transparent;
+              display: block;
+              width: 0;
+              z-index: 10001;
+              top: -0.8125rem;
+              right: 5.8125rem;
           `}
         >
           <ul
             css={css`
-              position: relative;
-
-              top: 0.3125rem;
-              margin-top: 0;
-              margin-bottom: 0.3125rem;
-              padding-left: 0;
+              padding: 12px 0;
               list-style: none;
 
               & > li {
                 width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 13px;
+                gap: 6px;
+
                 font-size: 1rem;
 
-                display: block;
                 background: #fff;
                 color: #000;
-                border: 1px solid #000;
 
                 cursor: pointer;
+              }
+
+              & > li:nth-child(1) {
+                margin-top: 0;
+              }
+
+              & > li > a {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                justify-content: center;
+                align-items: center;
+                gap: 6px;
               }
             `}
           >
             <li>
               <Link to='/editprofile' onClick={onClickHandler}>
+                <img css={{ width: '25px' }} src={editProfileIcon} />
                 정보 수정
               </Link>
             </li>
             {user?.admin && (
               <li>
-                <Link to='/add'>이슈 등록</Link>
+                <Link to='/add'>
+                  <img css={{ width: '25px' }} src={seriesIcon} />
+                  설문 등록
+                </Link>
               </li>
             )}
-            <li onClick={logout}>로그 아웃</li>
+            <li onClick={logout}>
+              <img css={{ width: '25px' }} src={logoutIcon} />
+              로그 아웃
+            </li>
           </ul>
         </nav>
       )}
