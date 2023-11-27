@@ -33,7 +33,7 @@ export default function Radio({ id, name, variant, checked, ...props }: Props) {
     <div
       css={{
         width: size,
-        height: '2.75rem',
+        height: '2.125rem',
         color: 'black',
         display: 'inline-block',
         borderRadius: '0.3125rem',
@@ -58,8 +58,8 @@ export default function Radio({ id, name, variant, checked, ...props }: Props) {
           font-family: NanumSquareAceb;
           font-size: 1.25rem;
           text-align: center;
-          line-height: 100%;
-          padding: 0.625rem;
+          line-height: 2.125rem;
+          // padding: 0.625rem;
           border-radius: 0.3125rem;
           transition: background 0.5s ease;
 

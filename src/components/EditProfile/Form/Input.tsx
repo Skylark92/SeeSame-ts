@@ -35,7 +35,7 @@ export default function Input({ nickname, ...props }: InputProps) {
       css={{
         width: '100%',
         maxWidth: '13.5rem',
-        margin: '0.9375rem auto',
+        margin: '0 auto',
         position: 'relative',
       }}
       {...props}

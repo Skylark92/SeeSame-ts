@@ -70,8 +70,8 @@ export default function Survey() {
           else if (majorTag === '호불호')
             dispatch(
               CHANGE({
-                cardColor: '#99e150',
-                backgroundColor: '#34a300',
+                cardColor: '#34a300',
+                backgroundColor: '#99e150',
               }),
             );
           else

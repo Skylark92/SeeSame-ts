@@ -5,6 +5,8 @@ import rand from '../Result/rand';
 
 type ImageTag = keyof typeof icon;
 
+const imgWidth = '13.25rem'; // 212px;
+
 export default function Image() {
   const survey = useContext(SurveyContext)?.data;
 
@@ -25,8 +27,8 @@ export default function Image() {
   return (
     <figure
       css={{
-        width: '14.5rem',
-        height: '14.5rem',
+        width: imgWidth,
+        height: imgWidth,
         overflow: 'hidden',
         position: 'relative',
         margin: '0 auto',
@@ -37,8 +39,8 @@ export default function Image() {
         src={icons}
         css={{
           position: 'absolute',
-          width: 'calc(14.5rem * 9)',
-          height: '14.5rem',
+          width: `calc(${imgWidth} * 9)`,
+          height: imgWidth,
           objectFit: 'cover',
           ...icon[imgTag],
         }}
@@ -52,27 +54,27 @@ const icon = {
     left: 0,
   },
   COUPLE: {
-    left: 'calc(-1 * 14.5rem)',
+    left: `calc(-1 * ${imgWidth})`,
   },
   DISPUTE: {
-    left: 'calc(-2 * 14.5rem)',
+    left: `calc(-2 * ${imgWidth})`,
   },
   EMOJI: {
-    left: 'calc(-3 * 14.5rem)',
+    left: `calc(-3 * ${imgWidth})`,
   },
   HEART: {
-    left: 'calc(-4 * 14.5rem)',
+    left: `calc(-4 * ${imgWidth})`,
   },
   PUBLIC: {
-    left: 'calc(-5 * 14.5rem)',
+    left: `calc(-5 * ${imgWidth})`,
   },
   SESAME: {
-    left: 'calc(-6 * 14.5rem)',
+    left: `calc(-6 * ${imgWidth})`,
   },
   FOOD: {
-    left: 'calc(-7 * 14.5rem)',
+    left: `calc(-7 * ${imgWidth})`,
   },
   HOT: {
-    left: 'calc(-8 * 14.5rem)',
+    left: `calc(-8 * ${imgWidth})`,
   },
 };

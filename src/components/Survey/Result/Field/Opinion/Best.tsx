@@ -76,6 +76,7 @@ export default function Best({ data, index = 0 }: BestProps) {
           height: '1rem',
           fontSize: '0.6875rem',
           overflow: 'hidden',
+          paddingRight: '33px',
         }}
       >
         {data.content}

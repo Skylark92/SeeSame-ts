@@ -148,7 +148,7 @@ export default function Form() {
       <ErrorMessage msg={error} />
       <Button
         variant='form'
-        css={{ fontSize: '1.5rem', marginTop: '1.25rem' }}
+        css={{ fontSize: '1.25rem', marginTop: '0.5rem' }}
         disabled={!isValid || isPending}
         onClick={submitHandler}
       >

@@ -5,7 +5,7 @@ export default function Greetings() {
     <p
       css={{
         ...font.p1,
-        lineHeight: '2.1875rem',
+        lineHeight: '2rem',
       }}
     >
       당신과 동일한 성향의 사람은

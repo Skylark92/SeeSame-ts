@@ -24,7 +24,8 @@ Field.Title = ({ children, ...props }: HTMLAttributes<HTMLHeadElement>) => {
   return (
     <h3
       css={{
-        width: '35%',
+        width: 'fit-content',
+        minWidth: '35%',
         height: '1rem',
         fontSize: '0.75rem',
         lineHeight: '1rem',

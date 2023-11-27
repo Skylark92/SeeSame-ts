@@ -1,20 +1,20 @@
 export const font = {
   h1: {
     fontFamily: 'NanumSquareAceb',
-    fontSize: '3.375rem',
+    fontSize: '2.875rem',
   },
   h2: {
     fontFamily: 'NanumSquareAcb',
-    fontSize: '2.375rem',
+    fontSize: '1.875rem',
   },
   p1: {
-    fontSize: '1.5rem',
+    fontSize: '1.375rem',
   },
   p2: {
     fontSize: '1.125rem',
   },
   p3: {
-    fontSize: '0.875rem',
+    fontSize: '0.75rem',
   },
   input: {
     fontFamily: 'NanumSquareAcb',

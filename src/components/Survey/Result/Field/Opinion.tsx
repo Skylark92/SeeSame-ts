@@ -58,8 +58,8 @@ export default function Opinion() {
     <CommentContext.Provider
       value={{ data: comments, setData: setComments, isMore, setIsMore }}
     >
-      <Field css={{ position: 'relative' }}>
-        <Field.Title>BEST 댓글</Field.Title>
+      <Field css={{ position: 'relative', padding: '10px 5px 3px' }}>
+        <Field.Title css={{ margin: '-1rem auto 0' }}>BEST 댓글</Field.Title>
         {isLoading ? (
           <Loading />
         ) : (

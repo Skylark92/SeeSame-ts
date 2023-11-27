@@ -18,8 +18,10 @@ export default function Total() {
   return (
     <Field>
       <Field.Title>
-        <span css={{ color: color.green700 }}>A : {survey?.choiceA}</span>
-        <span css={{ color: color.violet700 }}>
+        <span css={{ paddingLeft: '3px', color: color.green700 }}>
+          A : {survey?.choiceA}
+        </span>
+        <span css={{ paddingRight: '3px', color: color.violet700 }}>
           &nbsp; B : {survey?.choiceB}
         </span>
       </Field.Title>

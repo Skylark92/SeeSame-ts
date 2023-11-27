@@ -6,14 +6,12 @@ import { Input } from 'components/Input';
 import login from 'api/user/login';
 import isHaveId from 'api/user/isHaveId';
 import ErrorMessage from 'components/ErrorMessage';
-import Join from './Form/Join';
-import Guest from './Form/Guest';
 import Button from 'components/Button';
 
 export default function Form() {
   const [isCorrectId, setIsCorrectId] = useState<boolean>(false);
   const [isPending, setIsPending] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string>(' ');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const idRef = useRef<HTMLInputElement>(null);
@@ -65,7 +63,7 @@ export default function Form() {
         return;
       } else {
         setIsPending(false);
-        setErrorMsg(res.message);
+        setErrorMsg(' ');
         return;
       }
     }
@@ -85,13 +83,14 @@ export default function Form() {
     <form
       css={{
         maxWidth: '13.5rem',
-        margin: '1.25rem auto 0',
+        margin: '0.875rem auto 0',
       }}
       onSubmit={submitHandler}
       onKeyDown={keydownHandler}
     >
-      <Input css={{ marginTop: isCorrectId ? '0' : '3.375rem' }}>
+      <Input css={{ marginTop: isCorrectId ? '0' : '2.5rem' }}>
         <Input.TextField
+          css={{ height: '2.125rem' }}
           ref={idRef}
           id='welcome-view-id'
           type='text'
@@ -101,8 +100,9 @@ export default function Form() {
       </Input>
 
       {isCorrectId && (
-        <Input css={{ marginTop: '0.625rem' }}>
+        <Input css={{ marginTop: '0.375rem' }}>
           <Input.TextField
+            css={{ height: '2.125rem' }}
             ref={passRef}
             id='welcome-view-papssword'
             type='password'
@@ -110,12 +110,13 @@ export default function Form() {
           />
         </Input>
       )}
-      <ErrorMessage msg={errorMsg} />
+      <ErrorMessage
+        css={{ margin: '3px auto 0', height: 'fit-content' }}
+        msg={errorMsg}
+      />
       <Button variant='form' disabled={isPending} onClick={loginStepHandler}>
         {isCorrectId ? '로그인' : '계속'}
       </Button>
-      <Join />
-      <Guest />
     </form>
   );
 }

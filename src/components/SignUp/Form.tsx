@@ -87,7 +87,7 @@ export default function Form() {
       <Input
         label='질문 답변'
         css={{
-          marginTop: '4.5625rem',
+          marginTop: '2.0625rem',
         }}
       >
         <select

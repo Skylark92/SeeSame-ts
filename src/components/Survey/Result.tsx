@@ -43,7 +43,7 @@ export default function Result({ handler, ...props }: ResultProps) {
         padding: 0.375rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
         gap: 1.1875rem;
 

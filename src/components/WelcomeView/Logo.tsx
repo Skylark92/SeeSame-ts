@@ -14,14 +14,16 @@ export default function Logo() {
     }, 5000);
   }, [counter]);
 
+  const imgWidth = '13.25rem'; // 212px
+
   return (
     <figure
       css={{
-        width: '14.5rem',
-        height: '14.5rem',
+        width: imgWidth,
+        height: imgWidth,
         overflow: 'hidden',
         position: 'relative',
-        margin: '2rem auto 2rem',
+        margin: '6px auto',
         flexShrink: '0',
       }}
     >
@@ -29,10 +31,10 @@ export default function Logo() {
         src={icons}
         css={{
           position: 'absolute',
-          width: 'calc(14.5rem * 9)',
-          height: '14.5rem',
+          width: `calc(${imgWidth} * 9)`,
+          height: '13.25rem',
           objectFit: 'cover',
-          left: `calc(-${counter} * 14.5rem)`,
+          left: `calc(-${counter} * ${imgWidth})`,
         }}
       />
     </figure>

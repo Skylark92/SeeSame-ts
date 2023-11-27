@@ -45,7 +45,7 @@ const VARIANTS = {
     font-size: 1.25rem;
     width: 100%;
     max-width: 11.125rem;
-    height: 4.75rem;
+    height: 4.25rem;
   `,
   close: `
     background-color: transparent;

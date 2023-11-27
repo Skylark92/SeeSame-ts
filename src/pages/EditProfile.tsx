@@ -12,7 +12,7 @@ export default function EditProfile() {
         overflow: 'auto',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         alignItems: 'center',
       }}
     >

@@ -25,7 +25,7 @@ export default function Image({ imageIndex }: Props) {
         width: '7.625rem',
         height: '7.625rem',
         position: 'relative',
-        margin: '3px auto',
+        margin: '0 auto',
         borderRadius: '50%',
       }}
       onClick={modalHandler}

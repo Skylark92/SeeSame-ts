@@ -7,9 +7,12 @@ export default function Text({ content }: TextProps) {
   return (
     <p
       css={{
-        lineHeight: 1.6,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         maxWidth: '21.375rem',
         whiteSpace: 'break-spaces',
+        lineHeight: 1.6,
       }}
     >
       {content}

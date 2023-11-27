@@ -1,7 +1,7 @@
-import { PropsWithChildren } from 'react';
+import { HTMLAttributes } from 'react';
 import { font } from 'style/font';
 
-interface ErrorMessageProps extends PropsWithChildren {
+interface ErrorMessageProps extends HTMLAttributes<HTMLParagraphElement> {
   msg?: string | null;
 }
 

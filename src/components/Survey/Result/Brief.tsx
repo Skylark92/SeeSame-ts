@@ -5,6 +5,8 @@ import rand from './rand';
 
 type ImageTag = keyof typeof resultIcon;
 
+const imgWidth = '4.625rem';
+
 export default function Brief() {
   const survey = useContext(SurveyContext)?.data;
 
@@ -35,10 +37,10 @@ export default function Brief() {
     >
       <div
         css={{
-          width: '6.875rem',
-          height: '6.875rem',
+          width: imgWidth,
+          height: imgWidth,
           backgroundImage: `url(${icons})`,
-          backgroundSize: '61.875rem 6.875rem',
+          backgroundSize: '41.625rem 4.625rem',
           backgroundRepeat: 'no-repeat',
           flexShrink: 0,
           ...resultIcon[imgTag],
@@ -63,27 +65,27 @@ const resultIcon = {
     backgroundPosition: 0,
   },
   COUPLE: {
-    backgroundPosition: 'calc(-1 * 6.875rem) 0',
+    backgroundPosition: `calc(-1 * ${imgWidth}) 0`,
   },
   DISPUTE: {
-    backgroundPosition: 'calc(-2 * 6.875rem) 0',
+    backgroundPosition: `calc(-2 * ${imgWidth}) 0`,
   },
   EMOJI: {
-    backgroundPosition: 'calc(-3 * 6.875rem) 0',
+    backgroundPosition: `calc(-3 * ${imgWidth}) 0`,
   },
   HEART: {
-    backgroundPosition: 'calc(-4 * 6.875rem) 0',
+    backgroundPosition: `calc(-4 * ${imgWidth}) 0`,
   },
   PUBLIC: {
-    backgroundPosition: 'calc(-5 * 6.875rem) 0',
+    backgroundPosition: `calc(-5 * ${imgWidth}) 0`,
   },
   SESAME: {
-    backgroundPosition: 'calc(-6 * 6.875rem) 0',
+    backgroundPosition: `calc(-6 * ${imgWidth}) 0`,
   },
   FOOD: {
-    backgroundPosition: 'calc(-7 * 6.875rem) 0',
+    backgroundPosition: `calc(-7 * ${imgWidth}) 0`,
   },
   HOT: {
-    backgroundPosition: 'calc(-8 * 6.875rem) 0',
+    backgroundPosition: `calc(-8 * ${imgWidth}) 0`,
   },
 };
