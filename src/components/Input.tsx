@@ -69,7 +69,7 @@ Input.TextField = forwardRef(
             color: #b2b2b2;
           }
           &:disabled {
-            background: ${color.gray500};
+            background: ${color.gray300};
           }
           &:focus {
             outline: none;

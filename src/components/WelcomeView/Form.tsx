@@ -63,7 +63,7 @@ export default function Form() {
         return;
       } else {
         setIsPending(false);
-        setErrorMsg(' ');
+        setErrorMsg('비밀번호가 틀렸습니다.');
         return;
       }
     }

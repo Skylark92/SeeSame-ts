@@ -26,17 +26,27 @@ export default function Form() {
   const user = useSelector((state: RootState) => state.auth.user); // 유저 상태
   if (!user) return;
 
-  const nickname = user.profile?.nickname;
-  const profileImage = user.profile?.profileImage;
+  let nickname, profileImage, gender, age, MBTI;
+
+  if (user.profile) {
+    ({ nickname, profileImage, gender, age, MBTI } = user.profile);
+  }
+
+  let EI, SN, TF, JP;
+
+  if (MBTI) {
+    [EI, SN, TF, JP] = MBTI.split('');
+  }
+
   const [inputs, setInputs] = useState<ProfileInputs>({
     profileImage: profileImage ? profileImage : 'profile-image-01',
     nickname: nickname ? nickname : tempName(user._id),
-    gender: null,
-    age: null,
-    EI: null,
-    SN: null,
-    TF: null,
-    JP: null,
+    gender: gender || null,
+    age: age || null,
+    EI: (EI as ProfileInputs['EI']) || null,
+    SN: (SN as ProfileInputs['SN']) || null,
+    TF: (TF as ProfileInputs['TF']) || null,
+    JP: (JP as ProfileInputs['JP']) || null,
   });
 
   const [isValid, setIsValid] = useState<boolean>(false); // 유효성 상태
@@ -48,6 +58,17 @@ export default function Form() {
     else setIsValid(true);
   }, [inputs]);
 
+  useEffect(() => {
+    for (const key in inputs) {
+      if (key === 'nickname' || key === 'profileImage') continue;
+      const radioInput = document.getElementById(
+        inputs[key as keyof ProfileInputs] || '',
+      ) as HTMLInputElement;
+      if (radioInput) radioInput.checked = true;
+    }
+  }, []);
+
+  console.log(inputs);
   const inputHandler = (event: ChangeEvent<HTMLFormElement>) => {
     setInputs({
       ...inputs,
@@ -108,38 +129,38 @@ export default function Form() {
           gap: '0.375rem',
         }}
       >
-        {['E', 'I'].map((age) => (
+        {['E', 'I'].map((EI) => (
           <Radio
-            css={{ gridArea: age }}
-            key={age}
-            id={age}
+            css={{ gridArea: EI }}
+            key={EI}
+            id={EI}
             name='EI'
             variant='small'
           />
         ))}
-        {['S', 'N'].map((age) => (
+        {['S', 'N'].map((SN) => (
           <Radio
-            css={{ gridArea: age }}
-            key={age}
-            id={age}
+            css={{ gridArea: SN }}
+            key={SN}
+            id={SN}
             name='SN'
             variant='small'
           />
         ))}
-        {['T', 'F'].map((age) => (
+        {['T', 'F'].map((TF) => (
           <Radio
-            css={{ gridArea: age }}
-            key={age}
-            id={age}
+            css={{ gridArea: TF }}
+            key={TF}
+            id={TF}
             name='TF'
             variant='small'
           />
         ))}
-        {['J', 'P'].map((age) => (
+        {['J', 'P'].map((JP) => (
           <Radio
-            css={{ gridArea: age }}
-            key={age}
-            id={age}
+            css={{ gridArea: JP }}
+            key={JP}
+            id={JP}
             name='JP'
             variant='small'
           />

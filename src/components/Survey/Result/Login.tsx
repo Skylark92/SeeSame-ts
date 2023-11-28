@@ -20,6 +20,10 @@ export default function Login() {
     userLogin(id, pass);
   };
 
+  const findPasswordAlert = () => {
+    alert('죄송합니다. 현재 기능 구현 중에 있습니다.');
+  };
+
   return (
     <form
       css={css`
@@ -29,15 +33,14 @@ export default function Login() {
         align-items: center;
         text-align: center;
         width: 100%;
-        height: 60%;
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         white-space: break-spaces;
         padding: 0.625rem;
-        border-radius: 0.9375rem;
-        gap: 0.625rem;
+        border-radius: 1.25rem;
+        gap: 0.5rem;
 
         & > * {
           z-index: 30;
@@ -54,7 +57,7 @@ export default function Login() {
           backdrop-filter: blur(2px);
           -webkit-backdrop-filter: blur(2px);
           z-index: 25;
-          border-radius: 0 0 1.25rem 1.25rem;
+          border-radius: 1.25rem;
           transition: background 1.5s;
         }
       `}
@@ -84,6 +87,7 @@ export default function Login() {
       <Input css={{ width: 'calc(100% - 38px)' }}>
         <Input.TextField
           css={{ fontSize: '1.25rem' }}
+          type='password'
           placeholder='비밀번호'
           ref={passRef}
         />
@@ -98,7 +102,12 @@ export default function Login() {
       >
         {error}
       </p>
-      <Button variant='form' onClick={submitHandler} disabled={isPending}>
+      <Button
+        variant='form'
+        onClick={submitHandler}
+        disabled={isPending}
+        css={{ margin: '0 auto' }}
+      >
         로그인
       </Button>
       <Link
@@ -114,23 +123,23 @@ export default function Login() {
           background: '#24E5FF',
           border: 'none',
           borderRadius: '0.625rem',
-          margin: '0.1875rem auto',
+          margin: '0 auto',
           filter: 'drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25))',
           pointerEvents: 'auto',
         }}
       >
         회원가입 하기
       </Link>
-      <Link
-        to='/signup'
+      <p
         css={{
           fontFamily: 'NanumSquareAcr',
           fontSize: '0.875rem',
           textDecoration: 'underline',
         }}
+        onClick={findPasswordAlert}
       >
         비밀번호 찾기
-      </Link>
+      </p>
     </form>
   );
 }
