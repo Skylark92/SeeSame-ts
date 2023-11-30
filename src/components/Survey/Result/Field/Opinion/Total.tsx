@@ -32,7 +32,7 @@ export default function Total({ children, ...props }: PropsWithChildren) {
         display: flex;
         flex-direction: column;
 
-        animation: ${slideIn} 1s ease;
+        animation: ${slideIn} 0.3s ease;
       `}
       {...props}
     >

@@ -76,6 +76,7 @@ Input.TextField = forwardRef(
           }
         `}
         ref={ref}
+        autoCapitalize='off'
         {...props}
       />
     );
