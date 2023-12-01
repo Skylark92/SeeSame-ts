@@ -1,5 +1,6 @@
+/* eslint-disable indent */
 import { db } from 'api/core';
-import { arrayUnion, doc, getDoc, runTransaction } from 'firebase/firestore';
+import { doc, getDoc, increment, runTransaction } from 'firebase/firestore';
 import { SurveyData, SurveyResponse } from 'api/type/survey';
 import { UserData } from 'api/type/user';
 
@@ -28,16 +29,17 @@ export default async function vote(
     return response;
   }
 
-  if (survey.user.includes(user._id)) {
-    response.message = '이미 투표한 서베이입니다.';
-    return response;
-  }
-
   // 실행
   try {
     const profile = user.profile;
     const surveyRef = doc(db, 'Survey', survey._id); // 서베이 문서
-    const userSurveyRef = doc(db, 'User', user._id, 'Survey', survey._id); // 유저 문서 내 서베이 문서
+    // const userSurveyRef = doc(db, 'User', user._id, 'Survey', survey._id); // 유저 문서 내 서베이 문서
+    const opposite =
+      choice === 'choiceA'
+        ? 'choiceB'
+        : choice === 'choiceB'
+        ? 'choiceA'
+        : null;
 
     await runTransaction(db, async (transaction) => {
       const surveyDoc = await transaction.get(surveyRef);
@@ -45,41 +47,30 @@ export default async function vote(
         throw new Error('해당 서베이가 존재하지 않습니다.');
       }
 
-      const userSurveyDoc = await transaction.get(userSurveyRef);
-      if (userSurveyDoc.exists()) {
-        if (userSurveyDoc.data().isVoted) {
-          throw new Error('이미 투표한 서베이입니다.');
-        }
+      const data = surveyDoc.data();
+      if (data.users?.[user._id] === choice) {
+        throw new Error('같은 답변에 투표할 수 없습니다.');
       }
 
-      // 서베이 문서 통계 업데이트
-      const oldData = surveyDoc.data().stats;
-      const newData: any = {
-        user: arrayUnion(user._id),
-      };
-      newData['stats.total'] = oldData.total + 1; // 응답 전체 1 추가
-      newData[`stats.${choice}.total`] = oldData[choice].total + 1; // 해당 선택지의 총합을 1 추가
-      newData[`stats.${choice}.MBTI.${profile.MBTI}`] =
-        oldData[choice].MBTI[profile.MBTI] + 1;
-      newData[`stats.${choice}.${profile.gender}.${profile.age}`] =
-        oldData[choice][profile.gender][profile.age] + 1;
+      if (data.users?.[user._id] === opposite) {
+        transaction.update(surveyRef, {
+          ['stats.total']: increment(-1),
+          ['stats' + `.${opposite}` + '.total']: increment(-1),
+          ['stats' + `.${opposite}` + '.MBTI' + `.${profile.MBTI}`]:
+            increment(-1),
+          ['stats' + `.${opposite}` + `.${profile.gender}` + `.${profile.age}`]:
+            increment(-1),
+        });
+      }
 
-      transaction.update(surveyRef, newData);
-
-      // 유저 문서 내 서베이 문서 추가
-      const { stats, ...rest } = survey;
-      const userSurveyData = {
-        ...rest,
-        choice,
-        isVoted: true,
-        votedAt: new Date(),
-      };
-
-      transaction.update(doc(db, 'User', user._id), {
-        survey: arrayUnion(userSurveyData),
+      transaction.update(surveyRef, {
+        ['stats.total']: increment(1),
+        ['stats' + `.${choice}` + '.total']: increment(1),
+        ['stats' + `.${choice}` + '.MBTI' + `.${profile.MBTI}`]: increment(1),
+        ['stats' + `.${choice}` + `.${profile.gender}` + `.${profile.age}`]:
+          increment(1),
+        ['users' + `.${user._id}`]: choice,
       });
-
-      transaction.set(userSurveyRef, userSurveyData, { merge: true }); // merge 옵션, 문서가 존재하는 경우 덮어 쓰지 않고 병합
     });
 
     const latestSurvey = await getDoc(surveyRef);
