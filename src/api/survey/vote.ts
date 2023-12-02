@@ -53,13 +53,17 @@ export default async function vote(
       }
 
       if (data.users?.[user._id] === opposite) {
+        const votedProfile = data.users?.[user._id].profile;
+
         transaction.update(surveyRef, {
           ['stats.total']: increment(-1),
           ['stats' + `.${opposite}` + '.total']: increment(-1),
-          ['stats' + `.${opposite}` + '.MBTI' + `.${profile.MBTI}`]:
+          ['stats' + `.${opposite}` + '.MBTI' + `.${votedProfile.MBTI}`]:
             increment(-1),
-          ['stats' + `.${opposite}` + `.${profile.gender}` + `.${profile.age}`]:
-            increment(-1),
+          ['stats' +
+          `.${opposite}` +
+          `.${votedProfile.gender}` +
+          `.${votedProfile.age}`]: increment(-1),
         });
       }
 
@@ -69,7 +73,10 @@ export default async function vote(
         ['stats' + `.${choice}` + '.MBTI' + `.${profile.MBTI}`]: increment(1),
         ['stats' + `.${choice}` + `.${profile.gender}` + `.${profile.age}`]:
           increment(1),
-        ['users' + `.${user._id}`]: choice,
+        ['users' + `.${user._id}`]: {
+          choice: choice,
+          profile: profile,
+        },
       });
     });
 
