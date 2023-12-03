@@ -68,7 +68,6 @@ export default function Form() {
     }
   }, []);
 
-  console.log(inputs);
   const inputHandler = (event: ChangeEvent<HTMLFormElement>) => {
     setInputs({
       ...inputs,

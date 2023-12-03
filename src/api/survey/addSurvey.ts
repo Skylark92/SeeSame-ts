@@ -29,54 +29,34 @@ export default async function addSurvey({
   try {
     const surveyRef = doc(C_survey); // 자동 생성된 id를 참조하기 위함
 
+    const defaultStats = {
+      total: 0,
+      남자: { '10대': 0, '20대': 0, '30대': 0, '40대': 0, 청춘: 0 },
+      여자: { '10대': 0, '20대': 0, '30대': 0, '40대': 0, 청춘: 0 },
+      MBTI: {
+        ESTJ: 0,
+        ESTP: 0,
+        ESFJ: 0,
+        ESFP: 0,
+        ENTJ: 0,
+        ENTP: 0,
+        ENFJ: 0,
+        ENFP: 0,
+        INFP: 0,
+        INFJ: 0,
+        INTP: 0,
+        INTJ: 0,
+        ISFP: 0,
+        ISFJ: 0,
+        ISTP: 0,
+        ISTJ: 0,
+      },
+    };
+
     const initialStats = {
       total: 0,
-      choiceA: {
-        total: 0,
-        남자: { '10대': 0, '20대': 0, '30대': 0, '40대': 0, 청춘: 0 },
-        여자: { '10대': 0, '20대': 0, '30대': 0, '40대': 0, 청춘: 0 },
-        MBTI: {
-          ESTJ: 0,
-          ESTP: 0,
-          ESFJ: 0,
-          ESFP: 0,
-          ENTJ: 0,
-          ENTP: 0,
-          ENFJ: 0,
-          ENFP: 0,
-          INFP: 0,
-          INFJ: 0,
-          INTP: 0,
-          INTJ: 0,
-          ISFP: 0,
-          ISFJ: 0,
-          ISTP: 0,
-          ISTJ: 0,
-        },
-      },
-      choiceB: {
-        total: 0,
-        남자: { '10대': 0, '20대': 0, '30대': 0, '40대': 0, 청춘: 0 },
-        여자: { '10대': 0, '20대': 0, '30대': 0, '40대': 0, 청춘: 0 },
-        MBTI: {
-          ESTJ: 0,
-          ESTP: 0,
-          ESFJ: 0,
-          ESFP: 0,
-          ENTJ: 0,
-          ENTP: 0,
-          ENFJ: 0,
-          ENFP: 0,
-          INFP: 0,
-          INFJ: 0,
-          INTP: 0,
-          INTJ: 0,
-          ISFP: 0,
-          ISFJ: 0,
-          ISTP: 0,
-          ISTJ: 0,
-        },
-      },
+      choiceA: defaultStats,
+      choiceB: defaultStats,
     };
 
     const surveyData = {
@@ -87,7 +67,6 @@ export default async function addSurvey({
       tag,
       stats: initialStats,
       createdAt: new Date(),
-      user: [],
     };
 
     await setDoc(surveyRef, {

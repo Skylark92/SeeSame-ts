@@ -1,6 +1,6 @@
 import { DocumentReference, Timestamp } from 'firebase/firestore';
 import { CustomResponse } from './response';
-import { UserData } from './user';
+import { Profile, UserData } from './user';
 
 export interface SurveyData {
   _id: string;
@@ -10,7 +10,10 @@ export interface SurveyData {
   choiceB: string;
   tag: Tags;
   createdAt: Date | Timestamp;
-  user: string[];
+  users?: {
+    choice: string;
+    profile: Profile;
+  };
   stats: {
     total: number;
     choiceA: Choice;
