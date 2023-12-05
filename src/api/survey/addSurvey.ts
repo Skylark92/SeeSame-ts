@@ -66,6 +66,7 @@ export default async function addSurvey({
       choiceB,
       tag,
       stats: initialStats,
+      users: {},
       createdAt: new Date(),
     };
 

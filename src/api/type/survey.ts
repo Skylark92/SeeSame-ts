@@ -10,9 +10,11 @@ export interface SurveyData {
   choiceB: string;
   tag: Tags;
   createdAt: Date | Timestamp;
-  users?: {
-    choice: string;
-    profile: Profile;
+  users: {
+    [key: string]: {
+      choice: string;
+      profile: Profile;
+    };
   };
   stats: {
     total: number;
