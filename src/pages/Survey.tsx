@@ -15,7 +15,9 @@ export default function Survey() {
   const refs = useRef<RefObject<HTMLElement>[]>([]);
   const params = useParams();
   const navigate = useNavigate();
-  const isLogin = useSelector((state: RootState) => state.auth.isLogin);
+  const auth = useSelector((state: RootState) => state.auth);
+  const isLogin = auth.isLogin;
+  const user = auth.user;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,6 +26,16 @@ export default function Survey() {
         const j = Math.floor(Math.random() * (i + 1));
 
         [surveys[i], surveys[j]] = [surveys[j], surveys[i]];
+      }
+
+      if (user) {
+        surveys.sort((a, b) => {
+          if (params && a._id === params.id) {
+            return -1;
+          } else if (params && b._id === params.id) {
+            return 1;
+          } else return a.users[user._id] ? (b.users[user._id] ? 0 : 1) : -1;
+        });
       }
 
       if (params && surveys.some((survey) => survey._id === params.id)) {

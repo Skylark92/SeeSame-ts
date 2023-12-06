@@ -53,40 +53,52 @@ export default function UserMenu() {
   };
 
   return (
-    <article
-      id='user-menu'
+    <div
       css={css`
         position: absolute;
-        width: 2.625rem;
-        height: 2.625rem;
-        top: calc(var(--card-margin) + 0.5rem);
-        left: 0.875rem;
-        z-index: 100;
-
-        @media (min-width: 44.1875rem) {
-          left: calc((100vw - 42.375rem) / 2);
-        }
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: transparent;
+        z-index: 10;
+        pointer-events: ${dropdown ? 'auto' : 'none'};
       `}
+      onClick={onClickHandler}
     >
-      <Button
+      <article
+        id='user-menu'
         css={css`
-          display: block;
+          position: absolute;
           width: 2.625rem;
           height: 2.625rem;
-          border-radius: 50%;
-          margin: 0;
+          top: calc(var(--card-margin) + 0.5rem);
+          left: 0.875rem;
 
-          background-color: transparent;
-          background-image: url(${profileSprites});
-          background-size: 7.875rem 7.875rem;
-          background-position: ${profile[profileIndex]};
-          background-repeat: no-repeat;
+          @media (min-width: 43.125rem) {
+            left: calc(((100vw - 42.375rem) / 2) + 0.875rem - 6px);
+          }
         `}
-        onClick={onClickHandler}
-      />
-      {dropdown && (
-        <nav
+      >
+        <Button
           css={css`
+            display: block;
+            width: 2.625rem;
+            height: 2.625rem;
+            border-radius: 50%;
+            margin: 0;
+
+            background-color: transparent;
+            background-image: url(${profileSprites});
+            background-size: 7.875rem 7.875rem;
+            background-position: ${profile[profileIndex]};
+            background-repeat: no-repeat;
+          `}
+          onClick={onClickHandler}
+        />
+        {dropdown && (
+          <nav
+            css={css`
             width: 124px;
             padding: 3px;
             border-radius: 10px;
@@ -125,64 +137,65 @@ export default function UserMenu() {
               top: -0.8125rem;
               right: 5.8125rem;
           `}
-        >
-          <ul
-            css={css`
-              padding: 12px 0;
-              list-style: none;
-
-              & > li {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-top: 13px;
-                gap: 6px;
-
-                font-size: 1rem;
-
-                background: #fff;
-                color: #000;
-
-                cursor: pointer;
-              }
-
-              & > li:nth-child(1) {
-                margin-top: 0;
-              }
-
-              & > li > a {
-                display: flex;
-                width: 100%;
-                height: 100%;
-                justify-content: center;
-                align-items: center;
-                gap: 6px;
-              }
-            `}
           >
-            <li>
-              <Link to='/editprofile' onClick={onClickHandler}>
-                <img css={{ width: '25px' }} src={editProfileIcon} />
-                정보 수정
-              </Link>
-            </li>
-            {user?.admin && (
+            <ul
+              css={css`
+                padding: 12px 0;
+                list-style: none;
+
+                & > li {
+                  width: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin-top: 13px;
+                  gap: 6px;
+
+                  font-size: 1rem;
+
+                  background: #fff;
+                  color: #000;
+
+                  cursor: pointer;
+                }
+
+                & > li:nth-child(1) {
+                  margin-top: 0;
+                }
+
+                & > li > a {
+                  display: flex;
+                  width: 100%;
+                  height: 100%;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 6px;
+                }
+              `}
+            >
               <li>
-                <Link to='/add'>
-                  <img css={{ width: '25px' }} src={seriesIcon} />
-                  설문 등록
+                <Link to='/editprofile' onClick={onClickHandler}>
+                  <img css={{ width: '25px' }} src={editProfileIcon} />
+                  정보 수정
                 </Link>
               </li>
-            )}
-            <li onClick={logout}>
-              <img css={{ width: '25px' }} src={logoutIcon} />
-              로그 아웃
-            </li>
-          </ul>
-        </nav>
-      )}
-    </article>
+              {user?.admin && (
+                <li>
+                  <Link to='/add'>
+                    <img css={{ width: '25px' }} src={seriesIcon} />
+                    설문 등록
+                  </Link>
+                </li>
+              )}
+              <li onClick={logout}>
+                <img css={{ width: '25px' }} src={logoutIcon} />
+                로그 아웃
+              </li>
+            </ul>
+          </nav>
+        )}
+      </article>
+    </div>
   );
 }
 

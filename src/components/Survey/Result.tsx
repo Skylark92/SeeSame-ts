@@ -46,6 +46,7 @@ export default function Result({ handler, ...props }: ResultProps) {
         justify-content: space-evenly;
         align-items: center;
         gap: 1.1875rem;
+        z-index: 100;
 
         font-family: NanumSquareAcr;
 
