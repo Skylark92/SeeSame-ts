@@ -25,6 +25,7 @@ export default function Form({ handler }: FormProps) {
 
         & > [name=${context?.data.users[user!._id]?.choice}] {
           outline: 3px solid #fff;
+          position: relative;
 
           &::after {
             content: '';

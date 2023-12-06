@@ -38,14 +38,6 @@ export default function Survey() {
         });
       }
 
-      if (params && surveys.some((survey) => survey._id === params.id)) {
-        // 주소 공유 시 해당 서베이 가장 상단 노출
-        const targetIndex = surveys.findIndex(
-          (survey) => survey._id === params.id,
-        );
-
-        [surveys[0], surveys[targetIndex]] = [surveys[targetIndex], surveys[0]];
-      }
       setSurvey(surveys);
     });
   }, []);
