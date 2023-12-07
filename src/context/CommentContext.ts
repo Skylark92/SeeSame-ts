@@ -1,9 +1,9 @@
-import { Comment } from 'api/type/survey';
+import { CommentLoaded } from 'api/type';
 import { Dispatch, SetStateAction, createContext } from 'react';
 
 export type ContextState = {
-  data: Comment[];
-  setData: Dispatch<SetStateAction<Comment[]>>;
+  data: CommentLoaded[];
+  setData: Dispatch<SetStateAction<CommentLoaded[]>>;
   isMore: boolean;
   setIsMore: Dispatch<SetStateAction<boolean>>;
 };

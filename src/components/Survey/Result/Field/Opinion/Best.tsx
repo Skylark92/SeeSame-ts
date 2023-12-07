@@ -1,13 +1,13 @@
 import { css } from '@emotion/react';
-import { Comment } from 'api/type/survey';
 import { PropsWithChildren } from 'react';
 import profileSprites from 'assets/profile-image-sprites.png';
 import firsts from 'assets/comment-1.png';
 import seconds from 'assets/comment-2.png';
 import thirds from 'assets/comment-3.png';
+import { CommentLoaded } from 'api/type';
 
 interface BestProps extends PropsWithChildren {
-  data?: Comment;
+  data?: CommentLoaded;
   index?: number;
 }
 

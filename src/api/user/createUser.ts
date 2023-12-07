@@ -1,13 +1,13 @@
 import { C_user } from 'api/core';
 import { SHA224 } from 'crypto-js';
 import { doc, setDoc } from 'firebase/firestore';
-import { User, UserResponse } from 'api/type/user';
 import isHaveId from './isHaveId';
+import { CustomResponse, UserData, UserInput } from 'api/type';
 
-export default async function createUser(data: User) {
+export default async function createUser(data: UserInput) {
   // 새로운 유저 등록
 
-  const response: UserResponse = {
+  const response: CustomResponse<UserData> = {
     ok: false,
     message: null,
   };
@@ -48,7 +48,7 @@ export default async function createUser(data: User) {
     });
 
     response.ok = true;
-    response.user = {
+    response.payload = {
       userid,
       question,
       answer,

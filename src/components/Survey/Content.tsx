@@ -1,7 +1,6 @@
-import { MouseEvent, PropsWithChildren, useState } from 'react';
+import { MouseEvent, PropsWithChildren, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
-import { SurveyData } from 'api/type/survey';
 import SurveyContext from 'context/SurveyContext';
 import Card from 'components/Card';
 import Image from './Content/Image';
@@ -10,6 +9,8 @@ import Form from './Content/Form';
 import Result from './Result';
 import vote from 'api/survey/vote';
 import Header from 'components/Header';
+import { useLocation } from 'react-router-dom';
+import { SurveyData } from 'api/type';
 
 interface ContentProps extends PropsWithChildren {
   survey: SurveyData;
@@ -21,6 +22,17 @@ export default function Content({ survey, surveyRef }: ContentProps) {
   const [result, setResult] = useState<boolean>(false);
   const [userChoice, setUserChoice] = useState<string | null>(null);
   const user = useSelector((state: RootState) => state.auth.user);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (
+      location.pathname.includes(survey._id) &&
+      location.search.includes('result=true')
+    ) {
+      setResult(true);
+      console.log(location.pathname);
+    }
+  }, []);
 
   const choiceHandler = async (event: MouseEvent<HTMLButtonElement>) => {
     const name = event.currentTarget.name;
@@ -29,7 +41,7 @@ export default function Content({ survey, surveyRef }: ContentProps) {
       if (name === 'choiceA' || name === 'choiceB') {
         const res = await vote(survey, user, name);
         if (res.ok) {
-          setData(res.survey);
+          setData(res.payload);
         } else {
           console.log(res.message);
           if (res.message === '프로필 정보가 없습니다.') return;

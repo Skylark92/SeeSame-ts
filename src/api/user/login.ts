@@ -1,12 +1,12 @@
+import { CustomResponse, UserData } from 'api/type';
 import isHaveId from './isHaveId';
 import { SHA224 } from 'crypto-js';
-import { UserResponse } from 'api/type/user';
 
 export default async function login(id: string, password: string) {
   // 로그인 실행
   // 아이디와 비밀번호 일치 시 유저 정보를 return
 
-  const response: UserResponse = {
+  const response: CustomResponse<UserData> = {
     ok: false,
     message: null,
   };
@@ -25,7 +25,7 @@ export default async function login(id: string, password: string) {
       // 아이디와 비밀번호가 일치할 경우 유저 정보를 응답에 포함
       const { password, ...rest } = res;
       response.ok = true;
-      response.user = rest;
+      response.payload = rest;
     }
 
     return response;

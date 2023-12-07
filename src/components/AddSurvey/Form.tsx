@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import { Tags } from 'api/type/survey';
 import { Input } from 'components/Input';
 import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +7,7 @@ import { font } from 'style/font';
 import Header from 'components/Header';
 import Button from 'components/Button';
 import addSurvey from 'api/survey/addSurvey';
+import { SurveyTag } from 'api/type';
 
 export default function Form() {
   const [inputs, setInputs] = useState({
@@ -15,7 +15,7 @@ export default function Form() {
     content: '',
     choiceA: '가능',
     choiceB: '불가능',
-    tag: ['밸런스'] as Tags,
+    tag: ['밸런스'] as SurveyTag[],
   });
   const navigate = useNavigate();
 
@@ -35,7 +35,8 @@ export default function Form() {
   };
 
   const submitHandler = async () => {
-    const response = await addSurvey(inputs);
+    const { title, content, tag, choiceA, choiceB } = { ...inputs };
+    const response = await addSurvey(title, content, tag, choiceA, choiceB);
 
     if (response.ok) {
       alert('등록이 완료 되었습니다');

@@ -1,4 +1,4 @@
-import { SurveyData } from 'api/type/survey';
+import { SurveyData } from 'api/type';
 import { createContext } from 'react';
 
 export type ContextState = {

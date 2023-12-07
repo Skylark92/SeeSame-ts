@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 import { HTMLAttributes } from 'react';
-import { Comment } from 'api/type/survey';
 import profileSprites from 'assets/profile-image-sprites.png';
+import { CommentLoaded } from 'api/type';
 
 interface ContentProps extends HTMLAttributes<HTMLElement> {
-  data?: Comment;
+  data?: CommentLoaded;
 }
 
 export default function Content({ data, ...props }: ContentProps) {

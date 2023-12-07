@@ -1,11 +1,11 @@
 import { PropsWithChildren, useContext } from 'react';
-import { Age } from 'api/type/user';
 import Bar from '../../Bar';
 import SurveyContext from 'context/SurveyContext';
 import percent from 'util/percent';
+import { UserAge } from 'api/type';
 
 interface AgeProps extends PropsWithChildren {
-  age?: Age;
+  age?: UserAge;
 }
 
 export default function AgeBar({ age }: AgeProps) {

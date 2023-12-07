@@ -1,12 +1,12 @@
 import { C_user } from 'api/core';
 import { doc, updateDoc } from 'firebase/firestore';
-import { Profile, ProfileResponse } from 'api/type/user';
 import isHaveNickname from './isHaveNickname';
+import { CustomResponse, UserProfile } from 'api/type';
 
-export default async function setProfile(id: string, data: Profile) {
+export default async function setProfile(id: string, data: UserProfile) {
   // 프로필 설정
 
-  const response: ProfileResponse = {
+  const response: CustomResponse<UserProfile> = {
     ok: false,
     message: null,
   };
@@ -81,7 +81,7 @@ export default async function setProfile(id: string, data: Profile) {
       profile: data,
     });
 
-    response.profile = data;
+    response.payload = data;
     response.ok = true;
 
     return response;

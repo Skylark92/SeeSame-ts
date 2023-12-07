@@ -1,5 +1,5 @@
 import { C_user } from 'api/core';
-import { UserData } from 'api/type/user';
+import { UserData } from 'api/type';
 import { getDocs, query, where } from 'firebase/firestore';
 
 export default async function isHaveNickname(

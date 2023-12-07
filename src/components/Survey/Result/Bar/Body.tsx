@@ -42,7 +42,7 @@ export default function Body({ ratio, about, ...props }: BodyProps) {
     <div
       css={css`
         width: 100%;
-        text-align: ${ratio === undefined ? 'center' : 'start'};
+        text-align: 'start';
         background: ${ratio === undefined ? 'gray' : color.green500};
         text-indent: 0.1875rem;
 
@@ -59,9 +59,10 @@ export default function Body({ ratio, about, ...props }: BodyProps) {
         css={{
           fontFamily: 'NanumSquareAcr',
           display: 'flex',
-          width: 'fit-content',
+          width: '100%',
           height: '100%',
           gap: '0.375rem',
+          justifyContent: ratio === undefined ? 'center' : 'normal',
           alignItems: 'center',
           ...font.stroke,
         }}

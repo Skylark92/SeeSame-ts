@@ -49,14 +49,14 @@ export default function Form() {
       // 비밀번호 입력 단계
       const res = await login(id, pass);
       if (res.ok) {
-        if (!res.user?.profile) {
-          dispatch(LOGIN(res.user));
+        if (!res.payload?.profile) {
+          dispatch(LOGIN(res.payload));
           navigate('/editprofile');
           setIsPending(false);
           setErrorMsg(' ');
           return;
         }
-        dispatch(LOGIN(res.user));
+        dispatch(LOGIN(res.payload));
         setIsPending(false);
         setErrorMsg(' ');
         navigate('/survey');

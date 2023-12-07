@@ -1,10 +1,10 @@
 import { PropsWithChildren, useState } from 'react';
-import { ProfileImage } from 'api/type/user';
 import { position } from 'style/position';
 import sprites from 'assets/profile-image-sprites.png';
 import modifyIcon from 'assets/modify-icon.svg';
 import Modal from './Image/Modal';
 import Button from 'components/Button';
+import { ProfileImage } from 'api/type';
 
 interface Props extends PropsWithChildren {
   imageIndex: ProfileImage;

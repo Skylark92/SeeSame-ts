@@ -1,4 +1,4 @@
-import { SurveyData } from 'api/type/survey';
+import { SurveyData } from 'api/type';
 
 export default function chooseBestMBTI(survey: SurveyData) {
   const minimumTotal = 1;

@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { SurveyData } from 'api/type/survey';
-import { UserData } from 'api/type/user';
+import { SurveyData, UserData } from 'api/type';
 import addComment from 'api/survey/comment/addComment';
 
 function useComment() {
@@ -28,7 +27,7 @@ function useComment() {
     if (response.ok) {
       setError(null); // 에러 발생하지 않음
       setIsPending(false); // 통신 종료
-      return response.comment;
+      return response.payload;
     } else {
       if (typeof response.message === 'string') setError(response.message);
       setIsPending(false); // 통신 종료

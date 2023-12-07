@@ -1,25 +1,17 @@
 import { C_survey } from 'api/core';
-import { SurveyResponse, Tags } from 'api/type/survey';
+import { CustomResponse, SurveyData, SurveyTag } from 'api/type';
 import { doc, setDoc } from 'firebase/firestore';
 
-interface Parameters {
-  title: string;
-  content: string;
-  tag: Tags;
-  choiceA: string;
-  choiceB: string;
-}
-
-export default async function addSurvey({
-  title,
-  content,
-  tag = [],
+export default async function addSurvey(
+  title: string,
+  content: string,
+  tag: SurveyTag[] = [],
   choiceA = '가능',
   choiceB = '불가능',
-}: Parameters): Promise<SurveyResponse> {
+) {
   // 새로운 서베이를 추가
 
-  const response: SurveyResponse = {
+  const response: CustomResponse<SurveyData> = {
     ok: false,
     message: null,
   };
@@ -76,7 +68,7 @@ export default async function addSurvey({
     });
 
     response.ok = true;
-    response.survey = {
+    response.payload = {
       ...surveyData,
       _id: surveyRef.id,
     };

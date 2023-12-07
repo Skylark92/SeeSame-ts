@@ -24,7 +24,7 @@ function useLogin() {
 
     if (response.ok) {
       // 로그인 성공 시 상태 업데이트
-      dispatch(LOGIN(response.user));
+      dispatch(LOGIN(response.payload));
       setError(' '); // 에러 발생하지 않음
       setIsPending(false); // 통신 종료
     } else {

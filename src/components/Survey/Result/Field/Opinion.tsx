@@ -2,7 +2,6 @@ import React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
-import { Comment } from 'api/type/survey';
 import CommentContext from 'context/CommentContext';
 import SurveyContext from 'context/SurveyContext';
 import getComments from 'api/survey/comment/getComments';
@@ -13,9 +12,10 @@ import Button from './Opinion/Button';
 import Content from './Opinion/Content';
 import DeleteComment from 'api/survey/comment/DeleteComment';
 import Loading from 'components/Loading';
+import { CommentLoaded } from 'api/type';
 
 export default function Opinion() {
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [comments, setComments] = useState<CommentLoaded[]>([]);
   const [isMore, setIsMore] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const survey = useContext(SurveyContext)?.data;
@@ -24,14 +24,16 @@ export default function Opinion() {
   useEffect(() => {
     if (survey) {
       setIsLoading(true);
-      getComments(survey).then((res) => {
-        setComments(res as Comment[]);
+      getComments(survey._id).then((res) => {
+        if (res.payload) {
+          setComments(res.payload as CommentLoaded[]);
+        }
         setIsLoading(false);
       });
     }
   }, []);
 
-  const deleteHandler = async (comment: Comment) => {
+  const deleteHandler = async (comment: CommentLoaded) => {
     if (!(comment && survey && user)) return;
     if (user?._id !== comment.author._id) return;
 

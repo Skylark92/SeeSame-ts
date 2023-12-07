@@ -1,7 +1,6 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
-import { Age, Gender, MBTI, Profile, ProfileImage } from 'api/type/user';
 import Field from './Form/Field';
 import Radio from './Form/Radio';
 import Image from './Form/Image';
@@ -10,12 +9,19 @@ import Button from 'components/Button';
 import ErrorMessage from 'components/ErrorMessage';
 import useUpdateProfile from 'hooks/useUpdateProfile';
 import tempName from 'util/tempName';
+import {
+  ProfileImage,
+  UserAge,
+  UserGender,
+  UserMBTI,
+  UserProfile,
+} from 'api/type';
 
 type ProfileInputs = {
   profileImage: ProfileImage;
   nickname: string;
-  gender: Gender | null;
-  age: Age | null;
+  gender: UserGender | null;
+  age: UserAge | null;
   EI: 'E' | 'I' | null;
   SN: 'S' | 'N' | null;
   TF: 'T' | 'F' | null;
@@ -79,12 +85,12 @@ export default function Form() {
     const { nickname, gender, age, profileImage, ...MBTI } = inputs;
     if (!(gender && age)) return;
 
-    const profileData: Profile = {
+    const profileData: UserProfile = {
       nickname,
       profileImage,
       gender: gender,
       age: age,
-      MBTI: Object.values(MBTI).join('') as MBTI,
+      MBTI: Object.values(MBTI).join('') as UserMBTI,
     };
 
     updateProfile(user?._id, profileData);

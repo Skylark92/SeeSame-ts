@@ -1,17 +1,16 @@
 /* eslint-disable indent */
 import { db } from 'api/core';
+import { CustomResponse, SurveyData, UserData } from 'api/type';
 import { doc, getDoc, increment, runTransaction } from 'firebase/firestore';
-import { SurveyData, SurveyResponse } from 'api/type/survey';
-import { UserData } from 'api/type/user';
 
 export default async function vote(
   survey: SurveyData,
   user: UserData,
   choice: 'choiceA' | 'choiceB',
-): Promise<SurveyResponse> {
+) {
   // 사용자의 투표결과 반영
 
-  const response: SurveyResponse = {
+  const response: CustomResponse<SurveyData> = {
     ok: false,
     message: null,
   };
@@ -84,7 +83,7 @@ export default async function vote(
 
     response.ok = true;
     if (latestSurvey.exists()) {
-      response.survey = latestSurvey.data() as SurveyData;
+      response.payload = latestSurvey.data() as SurveyData;
     } else {
       throw new Error('최신 정보를 불러오는데 실패했습니다.');
     }

@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import { RefObject, createRef, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SurveyData } from 'api/type/survey';
 import Content from 'components/Survey/Content';
 import Slide from 'components/Survey/Slide';
 import UserMenu from 'components/UserMenu';
@@ -9,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { CHANGE } from 'store/colorSlice';
 import getSurveys from 'api/survey/getSurveys';
+import { SurveyData } from 'api/type';
 
 export default function Survey() {
   const [survey, setSurvey] = useState<SurveyData[]>([]);

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PFUPDATE } from '../store/authSlice';
-import { Profile } from 'api/type/user';
 import setProfile from 'api/user/setProfile';
+import { UserProfile } from 'api/type';
 
 function useUpdateProfile() {
   const [isPending, setIsPending] = useState<boolean>(false);
@@ -13,7 +13,7 @@ function useUpdateProfile() {
 
   const updateProfile = async (
     id: string | undefined | null,
-    data: Profile,
+    data: UserProfile,
   ) => {
     if (!id) return;
     setIsPending(true); // 통신 시작
@@ -21,7 +21,7 @@ function useUpdateProfile() {
 
     if (response.ok) {
       // 프로필 변경 성공 시 상태 업데이트
-      dispatch(PFUPDATE(response.profile));
+      dispatch(PFUPDATE(response.payload));
       setError(null); // 에러 발생하지 않음
       setIsPending(false); // 통신 종료
       navigate(-1);
