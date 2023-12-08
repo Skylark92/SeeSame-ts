@@ -71,7 +71,12 @@ export interface CommentData {
   author: DocumentReference;
   content: string;
   like: number;
-  user: string[];
+  users: {
+    [key: string]: {
+      choice: string;
+      profile: UserProfile;
+    };
+  };
   createdAt: Date | Timestamp;
 }
 

@@ -1,19 +1,9 @@
 import { db } from 'api/core';
-import { CustomResponse, UserData } from 'api/type';
-import {
-  deleteField,
-  doc,
-  getDoc,
-  increment,
-  runTransaction,
-} from 'firebase/firestore';
+import { CommentData, CommentLoaded, CustomResponse, UserData } from 'api/type';
+import { DocumentReference, deleteField, doc, getDoc, increment, runTransaction } from 'firebase/firestore';
 
-export default async function unlikeComment(
-  surveyId: string,
-  commentId: string,
-  user: UserData,
-) {
-  const response: CustomResponse<Comment> = {
+export default async function unlikeComment(surveyId: string, commentId: string, user: UserData) {
+  const response: CustomResponse<CommentLoaded> = {
     ok: false,
     message: null,
   };
@@ -46,7 +36,25 @@ export default async function unlikeComment(
     const latestComment = await getDoc(commentRef);
     response.ok = true;
     if (latestComment.exists()) {
-      response.payload = latestComment.data() as Comment;
+      const data = latestComment.data() as CommentData;
+      if (data.author) {
+        if (!(data.author instanceof DocumentReference)) {
+          throw new Error('댓글의 유저 정보가 잘못됐습니다.');
+        }
+        const docSnap = await getDoc(data.author);
+        if (docSnap?.exists()) {
+          const user = docSnap.data();
+
+          response.payload = {
+            ...data,
+            author: {
+              _id: user._id,
+              userid: user.userid,
+              profile: user.profile,
+            },
+          };
+        } else console.log(`유저 정보를 불러오는 데 실패했습니다. (Comment ID : ${latestComment.id})`);
+      }
     } else {
       throw new Error('최신 정보를 불러오는데 실패했습니다.');
     }

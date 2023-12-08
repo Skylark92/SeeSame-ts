@@ -2,12 +2,12 @@ import { css } from '@emotion/react';
 import { KeyboardEvent, useContext, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
-import { color } from 'style/color';
 import Button from 'components/Button';
 import SurveyContext from 'context/SurveyContext';
 import CommentContext from 'context/CommentContext';
 import profileSprites from 'assets/profile-image-sprites.png';
 import useComment from 'hooks/useComment';
+import sendCommentIcon from 'assets/send-comment-icon.svg';
 
 export default function Add() {
   const contentRef = useRef<HTMLInputElement>(null);
@@ -77,19 +77,17 @@ export default function Add() {
       >
         {user.profile.nickname}
       </strong>
-      <form css={{ position: 'relative' }}>
+      <form css={{ display: 'flex', marginTop: '0.5625rem', gap: '0.375rem' }}>
         <input
           css={css`
-            width: 100%;
-            height: 2.125rem;
+            height: 2rem;
             border: none;
             border-radius: 0.3125rem;
             background: rgba(0, 0, 0, 0.4);            
             font-family: 'NanumSquareAcr';
             font-size: 1rem;
             text-indent: 0.4375rem;
-            margin-top: 0.5625rem;
-            padding-right: 2.5rem;
+            flex: 1 1 0;
 
             &::placeholder {
               color: #fff;
@@ -103,20 +101,16 @@ export default function Add() {
         />
         <Button
           css={css`
-            background: ${color.blue500};
-            height: 2.125rem;
-            border-radius: 50%;
-            position: absolute;
-            right: 0;
-            bottom: 0;
+            width: 2.125rem;
+            height: 2rem;
+            background: url(${sendCommentIcon});
+            background-size: cover;
             margin: 0;
-            outline: 1px solid rgba(0, 0, 0, 0.5);
+            filter: none;
           `}
           disabled={isPending}
           onClick={submitHandler}
-        >
-          전송
-        </Button>
+        />
       </form>
     </div>
   );

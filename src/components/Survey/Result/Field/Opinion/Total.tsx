@@ -46,7 +46,7 @@ export default function Total({ children, ...props }: PropsWithChildren) {
           display: 'flex',
           flexDirection: 'column',
           flexGrow: 1,
-          gap: '1.75rem',
+          gap: '1.1875rem',
         }}
       >
         {children}
