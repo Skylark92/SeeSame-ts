@@ -113,7 +113,9 @@ export default function Content({ data, ...props }: ContentProps) {
             width: 1rem;
             height: 1rem;
             background: url(${likeIcon});
-            background-size: cover;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 0;
             filter: none;
             margin: 0;
             margin-top: -0.0625rem;

@@ -39,7 +39,6 @@ export default function Total({ children, ...props }: PropsWithChildren) {
       <Header />
       <main
         css={{
-          height: 'auto',
           fontSize: '0.875rem',
           padding: '1.3125rem 2.625rem 0.75rem',
           overflowY: 'auto',
