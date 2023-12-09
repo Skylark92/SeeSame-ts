@@ -37,9 +37,7 @@ export default function Opinion() {
     if (!(comment && survey && user)) return;
     if (user?._id !== comment.author._id) return;
 
-    const confirm = window.confirm(
-      `"${comment.content}"\n 해당 댓글을 삭제하시겠습니까?`,
-    );
+    const confirm = window.confirm(`"${comment.content}"\n 해당 댓글을 삭제하시겠습니까?`);
 
     if (confirm) {
       await DeleteComment(comment, survey, user);
@@ -56,13 +54,9 @@ export default function Opinion() {
   };
 
   return (
-    <CommentContext.Provider
-      value={{ data: comments, setData: setComments, isMore, setIsMore }}
-    >
+    <CommentContext.Provider value={{ data: comments, setData: setComments, isMore, setIsMore }}>
       <Field css={{ position: 'relative', padding: '10px 5px 3px' }}>
-        <Button onClick={() => setIsMore(true)}>
-          {comments.length < 1 ? '댓글 작성하기' : '댓글 더 보기'}
-        </Button>
+        <Button onClick={() => setIsMore(true)}>{comments.length < 1 ? '댓글 작성하기' : '댓글 더 보기'}</Button>
         <Field.Title css={{ margin: '-1rem auto 0' }}>BEST 댓글</Field.Title>
         {isLoading ? (
           <Loading />
@@ -79,7 +73,8 @@ export default function Opinion() {
           </p>
         ) : (
           <React.Fragment>
-            {comments
+            {[...comments]
+              .sort((a, b) => b.like - a.like)
               .filter((_, i) => i < 3)
               .map((comment, i) => {
                 return (
@@ -102,13 +97,7 @@ export default function Opinion() {
       {isMore && (
         <Total>
           {comments.map((comment) => {
-            return (
-              <Content
-                key={comment._id}
-                data={comment}
-                onClick={() => deleteHandler(comment)}
-              />
-            );
+            return <Content key={comment._id} data={comment} onClick={() => deleteHandler(comment)} />;
           })}
         </Total>
       )}

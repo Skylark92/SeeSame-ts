@@ -1,13 +1,6 @@
 import { db } from 'api/core';
 import { CommentData, CommentLoaded, CustomResponse } from 'api/type';
-import {
-  DocumentReference,
-  collection,
-  getDoc,
-  getDocs,
-  orderBy,
-  query,
-} from 'firebase/firestore';
+import { DocumentReference, collection, getDoc, getDocs, orderBy, query } from 'firebase/firestore';
 
 export default async function getComments(surveyId: string) {
   // 댓글 전체 가져오기
@@ -19,11 +12,7 @@ export default async function getComments(surveyId: string) {
 
   try {
     const commentList: CommentLoaded[] = [];
-    const q = query(
-      collection(db, 'Survey', surveyId, 'Comment'),
-      orderBy('like', 'desc'),
-      orderBy('createdAt', 'desc'),
-    );
+    const q = query(collection(db, 'Survey', surveyId, 'Comment'), orderBy('createdAt'));
     const snapshot = await getDocs(q);
 
     for await (const doc of snapshot.docs) {
@@ -48,10 +37,7 @@ export default async function getComments(surveyId: string) {
               profile: user.profile,
             },
           });
-        } else
-          console.log(
-            `유저 정보를 불러오는 데 실패했습니다. (Comment ID : ${doc.id})`,
-          );
+        } else console.log(`유저 정보를 불러오는 데 실패했습니다. (Comment ID : ${doc.id})`);
       }
     }
 
