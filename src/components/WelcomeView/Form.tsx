@@ -1,71 +1,24 @@
-import { useState, useRef, KeyboardEvent, FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { LOGIN } from 'store/authSlice';
+import { useRef, KeyboardEvent, FormEvent } from 'react';
 import { Input } from 'components/Input';
-import login from 'api/user/login';
-import isHaveId from 'api/user/isHaveId';
 import ErrorMessage from 'components/ErrorMessage';
 import Button from 'components/Button';
+import useLogin from 'hooks/useLogin';
 
 export default function Form() {
-  const [isCorrectId, setIsCorrectId] = useState<boolean>(false);
-  const [isPending, setIsPending] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>(' ');
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { checkId, isCorrectId, userLogin, isPending, error } = useLogin();
   const idRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
 
   const loginStepHandler = async () => {
-    const id = idRef.current ? idRef.current.value : null;
-    const pass = passRef.current ? passRef.current.value : null;
-
-    if (!id) {
-      setErrorMsg('아이디를 입력해주세요.');
-      return;
-    }
-
-    setIsPending(true);
+    const id = idRef.current ? idRef.current.value : '';
+    const pass = passRef.current ? passRef.current.value : '';
 
     if (!isCorrectId) {
       // 아이디 입력 단계
-      const isHave = await isHaveId(id);
-      if (isHave) {
-        setIsCorrectId(true); // 아이디가 존재하는 경우 다음 과정
-        setIsPending(false);
-        setErrorMsg(' ');
-        return;
-      } else {
-        setIsPending(false);
-        setErrorMsg('아이디가 존재하지 않습니다.');
-        return;
-      }
+      await checkId(id);
     } else if (isCorrectId) {
-      if (!pass) {
-        setErrorMsg('비밀번호를 입력해주세요.');
-        return;
-      }
       // 비밀번호 입력 단계
-      const res = await login(id, pass);
-      if (res.ok) {
-        if (!res.payload?.profile) {
-          dispatch(LOGIN(res.payload));
-          navigate('/editprofile');
-          setIsPending(false);
-          setErrorMsg(' ');
-          return;
-        }
-        dispatch(LOGIN(res.payload));
-        setIsPending(false);
-        setErrorMsg(' ');
-        navigate('/survey');
-        return;
-      } else {
-        setIsPending(false);
-        setErrorMsg('비밀번호가 틀렸습니다.');
-        return;
-      }
+      await userLogin(id, pass);
     }
   };
 
@@ -110,10 +63,7 @@ export default function Form() {
           />
         </Input>
       )}
-      <ErrorMessage
-        css={{ margin: '3px auto 0', height: 'fit-content' }}
-        msg={errorMsg}
-      />
+      <ErrorMessage css={{ margin: '3px auto 0', height: 'fit-content' }} msg={error} />
       <Button variant='form' disabled={isPending} onClick={loginStepHandler}>
         {isCorrectId ? '로그인' : '계속'}
       </Button>

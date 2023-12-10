@@ -1,8 +1,4 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import App from 'App';
@@ -22,7 +18,7 @@ export default function Router() {
       children: [
         {
           path: '',
-          element: auth.isLogin ? <Navigate to='/survey' /> : <WelcomeView />,
+          element: <WelcomeView />,
         },
         {
           path: 'signup',
