@@ -28,7 +28,7 @@ export default function Content({ data, ...props }: ContentProps) {
   if (!comments) return;
   if (!data.author.profile) return;
 
-  const index = comments.findIndex((v) => v._id === data._id);
+  const index = [...comments].sort((a, b) => b.like - a.like).findIndex((v) => v._id === data._id);
 
   const likeHandler = async (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
