@@ -1,8 +1,8 @@
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { db } from 'api/core';
-import { CommentLoaded, CustomResponse, SurveyData, UserData } from 'api/type';
+import { CommentLoaded, CustomResponse, UserData } from 'api/type';
 
-export default async function addComment(content: string, survey: SurveyData, user: UserData) {
+export default async function addComment(content: string, surveyId: string, user: UserData) {
   // 댓글 게시
 
   const response: CustomResponse<CommentLoaded> = {
@@ -10,7 +10,7 @@ export default async function addComment(content: string, survey: SurveyData, us
     message: null,
   };
 
-  const commentRef = doc(collection(db, 'Survey', survey._id, 'Comment'));
+  const commentRef = doc(collection(db, 'Survey', surveyId, 'Comment'));
 
   try {
     const newComment = {

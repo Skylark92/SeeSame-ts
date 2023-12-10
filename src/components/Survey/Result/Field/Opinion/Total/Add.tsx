@@ -21,7 +21,7 @@ export default function Add() {
     if (!contentRef.current?.value) return;
     if (!(user && survey)) return;
 
-    const res = await sendComment(contentRef.current.value, survey, user);
+    const res = await sendComment(contentRef.current.value, survey._id, user);
     contentRef.current.value = '';
 
     if (!(comment && setComment)) return alert('뭔가 잘못됐습니다!');
