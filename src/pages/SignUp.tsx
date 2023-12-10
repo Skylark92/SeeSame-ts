@@ -28,7 +28,7 @@ export default function SignUp() {
     <main
       id='sign-up'
       css={{
-        background: color.blue700,
+        background: color.basicCard,
         padding: '4.375rem 1.0625rem',
         overflow: 'auto',
         display: 'flex',

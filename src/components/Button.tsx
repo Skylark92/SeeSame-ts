@@ -25,7 +25,7 @@ export default function Button({ variant = 'custom', ...props }: ButtonProps) {
         cursor: pointer;
 
         &:disabled {
-          background: ${color.gray300};
+          background: ${color.disabledButton};
         }
       `}
       type='button'
@@ -36,7 +36,7 @@ export default function Button({ variant = 'custom', ...props }: ButtonProps) {
 
 const VARIANTS = {
   form: `
-    background: ${color.green500};
+    background: ${color.choiceA};
     font-size: 1.25rem;
     width: 13.5rem;
     height: 2.875rem;

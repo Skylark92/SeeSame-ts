@@ -7,7 +7,7 @@ export default function EditProfile() {
     <main
       id='edit-profile'
       css={{
-        background: color.blue700,
+        background: color.basicCard,
         padding: '4.375rem 0',
         overflow: 'auto',
         display: 'flex',

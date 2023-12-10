@@ -43,13 +43,13 @@ export default function Body({ ratio, about, ...props }: BodyProps) {
       css={css`
         width: 100%;
         text-align: 'start';
-        background: ${ratio === undefined ? 'gray' : color.green500};
+        background: ${ratio === undefined ? 'gray' : color.choiceA};
         text-indent: 0.1875rem;
 
         flex: 1 1 ${ratio === undefined ? 100 : ratio < 10 ? 10 : ratio}%;
 
         &:nth-child(2) {
-          background: ${color.violet900};
+          background: #c852ff;
           direction: rtl;
         }
       `}

@@ -12,7 +12,6 @@ import {
   cloneElement,
 } from 'react';
 import { color } from 'style/color';
-import { font } from 'style/font';
 
 interface InputProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactElement;
@@ -33,7 +32,7 @@ export function Input({ label, children, ...props }: InputProps) {
             width: '100%',
             textAlign: 'left',
             fontSize: '1rem',
-            color: color.blue300,
+            color: '#77c4ff',
             textIndent: '0.25rem',
             marginBottom: '2px',
           }}
@@ -47,15 +46,12 @@ export function Input({ label, children, ...props }: InputProps) {
 }
 
 Input.TextField = forwardRef(
-  (
-    { ...props }: InputHTMLAttributes<HTMLInputElement>,
-    ref: ForwardedRef<HTMLInputElement>,
-  ) => {
+  ({ ...props }: InputHTMLAttributes<HTMLInputElement>, ref: ForwardedRef<HTMLInputElement>) => {
     return (
       <input
         css={css`
-          font-family: ${font.input.fontFamily};
-          font-size: ${font.input.fontSize};
+          font-family: 'NanumSquareAcb';
+          font-size: 1rem;
           text-indent: 0.4375rem;
           display: block;
           width: 100%;
@@ -69,7 +65,7 @@ Input.TextField = forwardRef(
             color: #b2b2b2;
           }
           &:disabled {
-            background: ${color.gray300};
+            background: ${color.disabledInput};
           }
           &:focus {
             outline: none;

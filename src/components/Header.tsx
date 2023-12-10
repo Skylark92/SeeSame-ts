@@ -1,17 +1,12 @@
 import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { font } from 'style/font';
 import backArrow from 'assets/back-arrow.png';
 
 interface HeaderProps extends PropsWithChildren {
   backButton?: boolean;
 }
 
-export default function Header({
-  backButton,
-  children,
-  ...props
-}: HeaderProps) {
+export default function Header({ backButton, children, ...props }: HeaderProps) {
   const navigate = useNavigate();
 
   return (
@@ -21,8 +16,8 @@ export default function Header({
         maxWidth: '42.375rem',
         margin: '0 auto',
         position: 'relative',
-        ...font.h2,
-        ...font.shadow,
+        fontFamily: 'NanumSquareAcb',
+        fontSize: '1.875rem',
       }}
       {...props}
     >

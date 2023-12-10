@@ -4,7 +4,7 @@ export default function Greetings() {
   return (
     <p
       css={{
-        ...font.p1,
+        ...font.mainParagraph,
         lineHeight: '2rem',
       }}
     >

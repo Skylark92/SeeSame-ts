@@ -1,24 +1,17 @@
 export const font = {
-  h1: {
+  mainTitle: {
     fontFamily: 'NanumSquareAceb',
     fontSize: '2.875rem',
   },
-  h2: {
+  surveyTitle: {
     fontFamily: 'NanumSquareAcb',
     fontSize: '1.875rem',
   },
-  p1: {
+  mainParagraph: {
     fontSize: '1.375rem',
   },
-  p2: {
+  surveyParagraph: {
     fontSize: '1.125rem',
-  },
-  p3: {
-    fontSize: '0.75rem',
-  },
-  input: {
-    fontFamily: 'NanumSquareAcb',
-    fontSize: '16px',
   },
   shadow: {
     textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',

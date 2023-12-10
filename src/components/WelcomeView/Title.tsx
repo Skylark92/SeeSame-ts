@@ -4,7 +4,7 @@ export default function Title() {
   return (
     <h1
       css={{
-        ...font.h1,
+        ...font.mainTitle,
         ...font.shadow,
         letterSpacing: '-0.125rem',
       }}

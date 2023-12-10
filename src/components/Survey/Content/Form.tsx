@@ -25,9 +25,10 @@ export default function Form({ handler }: FormProps) {
         display: flex;
         gap: 0.625rem;
 
-        ${id === context?.data._id &&
+        ${user &&
+        id === context?.data._id &&
         `
-          & > [name=${context?.data.users[user!._id]?.choice}] {
+          & > [name=${context?.data.users[user._id]?.choice}] {
             outline: 3px solid #fff;
             position: relative;
 
@@ -46,20 +47,10 @@ export default function Form({ handler }: FormProps) {
         `}
       `}
     >
-      <Button
-        variant='survey'
-        name='choiceA'
-        css={{ background: color.green500 }}
-        onClick={handler}
-      >
+      <Button variant='survey' name='choiceA' css={{ background: color.choiceA }} onClick={handler}>
         {context?.data.choiceA}
       </Button>
-      <Button
-        variant='survey'
-        name='choiceB'
-        css={{ background: color.violet500 }}
-        onClick={handler}
-      >
+      <Button variant='survey' name='choiceB' css={{ background: color.choiceB }} onClick={handler}>
         {context?.data.choiceB}
       </Button>
     </form>

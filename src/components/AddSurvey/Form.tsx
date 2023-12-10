@@ -1,9 +1,7 @@
 import { css } from '@emotion/react';
 import { Input } from 'components/Input';
 import { ChangeEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { color } from 'style/color';
-import { font } from 'style/font';
 import Header from 'components/Header';
 import Button from 'components/Button';
 import addSurvey from 'api/survey/addSurvey';
@@ -17,7 +15,6 @@ export default function Form() {
     choiceB: '불가능',
     tag: ['밸런스'] as SurveyTag[],
   });
-  const navigate = useNavigate();
 
   const tags = ['밸런스', '호불호', 'VS', '음식', '사랑', '커플'];
 
@@ -69,8 +66,8 @@ export default function Form() {
       <Input label='내용'>
         <textarea
           css={css`
-            font-family: ${font.input.fontFamily};
-            font-size: ${font.input.fontSize};
+            font-family: 'NanumSquareAcb';
+            font-size: 1rem;
             padding: 0.4375rem;
             display: block;
             width: 100%;
@@ -84,7 +81,7 @@ export default function Form() {
               color: #b2b2b2;
             }
             &:disabled {
-              background: ${color.gray500};
+              background: ${color.disabledInput};
             }
             &:focus {
               outline: none;
@@ -117,7 +114,7 @@ export default function Form() {
           width: '100%',
           textAlign: 'left',
           fontSize: '1rem',
-          color: color.blue300,
+          color: '#77c4ff',
           textIndent: '0.25rem',
           marginBottom: '2px',
         }}

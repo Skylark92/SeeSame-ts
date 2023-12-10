@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import { color } from 'style/color';
 
 export default function Button({ ...props }) {
   return (
@@ -17,7 +16,7 @@ export default function Button({ ...props }) {
         position: absolute;
         top: -0.46875rem;
         right: 0.5rem;
-        background: ${color.blue500};
+        background: #00d1ff;
 
         pointer-events: auto;
         cursor: pointer;

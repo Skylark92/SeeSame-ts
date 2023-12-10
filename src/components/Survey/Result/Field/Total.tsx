@@ -18,13 +18,9 @@ export default function Total() {
   return (
     <Field>
       <Field.Title>
-        <span css={{ paddingLeft: '3px', color: color.green700 }}>
-          {survey?.choiceA}
-        </span>
+        <span css={{ paddingLeft: '3px', color: color.choiceA }}>{survey?.choiceA}</span>
         {' | '}
-        <span css={{ paddingRight: '3px', color: color.violet700 }}>
-          {survey?.choiceB}
-        </span>
+        <span css={{ paddingRight: '3px', color: color.choiceB }}>{survey?.choiceB}</span>
       </Field.Title>
       <Bar choiceA={aRatio || 0} choiceB={bRatio || 0} about='total' />
     </Field>

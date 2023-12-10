@@ -16,8 +16,7 @@ interface LabelColor {
 export default function Radio({ id, name, variant, checked, ...props }: Props) {
   if (!variant) return; //
 
-  const size =
-    variant === 'small' ? '4.25rem' : variant === 'large' ? '8.625rem' : 0;
+  const size = variant === 'small' ? '4.25rem' : variant === 'large' ? '8.625rem' : 0;
 
   const labelColor: LabelColor = {
     남자: '#00d1ff',
@@ -41,14 +40,7 @@ export default function Radio({ id, name, variant, checked, ...props }: Props) {
       }}
       {...props}
     >
-      <input
-        type='radio'
-        id={id}
-        name={name}
-        value={id}
-        checked={checked}
-        hidden
-      />
+      <input type='radio' id={id} name={name} value={id} checked={checked} hidden />
       <label
         htmlFor={id}
         css={css`
@@ -63,7 +55,7 @@ export default function Radio({ id, name, variant, checked, ...props }: Props) {
           border-radius: 0.3125rem;
           transition: background 0.5s ease;
 
-          background: ${color.gray700};
+          background: ${color.disabledButton};
 
           input:checked + & {
             background: ${labelColor[id] || '#f7fa81'};

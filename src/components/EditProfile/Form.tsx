@@ -9,13 +9,7 @@ import Button from 'components/Button';
 import ErrorMessage from 'components/ErrorMessage';
 import useUpdateProfile from 'hooks/useUpdateProfile';
 import tempName from 'util/tempName';
-import {
-  ProfileImage,
-  UserAge,
-  UserGender,
-  UserMBTI,
-  UserProfile,
-} from 'api/type';
+import { ProfileImage, UserAge, UserGender, UserMBTI, UserProfile } from 'api/type';
 
 type ProfileInputs = {
   profileImage: ProfileImage;
@@ -59,17 +53,14 @@ export default function Form() {
   const { updateProfile, isPending, error } = useUpdateProfile();
 
   useEffect(() => {
-    if (Object.values(inputs).includes(null) || inputs.nickname === '')
-      setIsValid(false);
+    if (Object.values(inputs).includes(null) || inputs.nickname === '') setIsValid(false);
     else setIsValid(true);
   }, [inputs]);
 
   useEffect(() => {
     for (const key in inputs) {
       if (key === 'nickname' || key === 'profileImage') continue;
-      const radioInput = document.getElementById(
-        inputs[key as keyof ProfileInputs] || '',
-      ) as HTMLInputElement;
+      const radioInput = document.getElementById(inputs[key as keyof ProfileInputs] || '') as HTMLInputElement;
       if (radioInput) radioInput.checked = true;
     }
   }, []);
@@ -135,40 +126,16 @@ export default function Form() {
         }}
       >
         {['E', 'I'].map((EI) => (
-          <Radio
-            css={{ gridArea: EI }}
-            key={EI}
-            id={EI}
-            name='EI'
-            variant='small'
-          />
+          <Radio css={{ gridArea: EI }} key={EI} id={EI} name='EI' variant='small' />
         ))}
         {['S', 'N'].map((SN) => (
-          <Radio
-            css={{ gridArea: SN }}
-            key={SN}
-            id={SN}
-            name='SN'
-            variant='small'
-          />
+          <Radio css={{ gridArea: SN }} key={SN} id={SN} name='SN' variant='small' />
         ))}
         {['T', 'F'].map((TF) => (
-          <Radio
-            css={{ gridArea: TF }}
-            key={TF}
-            id={TF}
-            name='TF'
-            variant='small'
-          />
+          <Radio css={{ gridArea: TF }} key={TF} id={TF} name='TF' variant='small' />
         ))}
         {['J', 'P'].map((JP) => (
-          <Radio
-            css={{ gridArea: JP }}
-            key={JP}
-            id={JP}
-            name='JP'
-            variant='small'
-          />
+          <Radio css={{ gridArea: JP }} key={JP} id={JP} name='JP' variant='small' />
         ))}
       </Field>
       <ErrorMessage msg={error} />
