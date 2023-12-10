@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import SurveyContext from 'context/SurveyContext';
-import icons from 'assets/survey-icon-sprites.png';
+import icons from 'assets/survey_sprites.png';
 import rand from './rand';
 
 type ImageTag = keyof typeof resultIcon;
@@ -18,10 +18,15 @@ export default function Brief() {
       rand(survey._id) ? (imgTag = 'BASIC') : (imgTag = 'DISPUTE');
     } else if (majorTag === '호불호') {
       rand(survey._id) ? (imgTag = 'EMOJI') : (imgTag = 'PUBLIC');
-    } else if (majorTag === 'VS') imgTag = 'HOT';
-    else if (majorTag === '음식') imgTag = 'FOOD';
-    else if (majorTag === '사랑') imgTag = 'HEART';
-    else if (majorTag === '커플') imgTag = 'COUPLE';
+    } else if (majorTag === 'VS') {
+      rand(survey._id) ? (imgTag = 'HOT') : (imgTag = 'HOT2');
+    } else if (majorTag === '음식') {
+      rand(survey._id) ? (imgTag = 'FOOD') : (imgTag = 'FOOD2');
+    } else if (majorTag === '사랑') {
+      rand(survey._id) ? (imgTag = 'HEART') : (imgTag = 'HEART2');
+    } else if (majorTag === '커플') {
+      rand(survey._id) ? (imgTag = 'COUPLE') : (imgTag = 'COUPLE2');
+    }
   }
 
   return (
@@ -40,7 +45,7 @@ export default function Brief() {
           width: imgWidth,
           height: imgWidth,
           backgroundImage: `url(${icons})`,
-          backgroundSize: '41.625rem 4.625rem',
+          backgroundSize: `calc(${imgWidth} * 13) 4.625rem`,
           backgroundRepeat: 'no-repeat',
           flexShrink: 0,
           ...resultIcon[imgTag],
@@ -87,5 +92,17 @@ const resultIcon = {
   },
   HOT: {
     backgroundPosition: `calc(-8 * ${imgWidth}) 0`,
+  },
+  COUPLE2: {
+    backgroundPosition: `calc(-9 * ${imgWidth}) 0`,
+  },
+  FOOD2: {
+    backgroundPosition: `calc(-10 * ${imgWidth}) 0`,
+  },
+  HEART2: {
+    backgroundPosition: `calc(-11 * ${imgWidth}) 0`,
+  },
+  HOT2: {
+    backgroundPosition: `calc(-12 * ${imgWidth}) 0`,
   },
 };

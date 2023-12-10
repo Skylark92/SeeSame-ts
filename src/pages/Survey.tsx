@@ -13,7 +13,7 @@ import { SurveyData } from 'api/type';
 export default function Survey() {
   const [survey, setSurvey] = useState<SurveyData[]>([]);
   const refs = useRef<RefObject<HTMLElement>[]>([]);
-  const params = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const auth = useSelector((state: RootState) => state.auth);
   const isLogin = auth.isLogin;
@@ -30,12 +30,18 @@ export default function Survey() {
 
       if (user) {
         surveys.sort((a, b) => {
-          if (params && a._id === params.id) {
+          if (id && a._id === id) {
             return -1;
-          } else if (params && b._id === params.id) {
+          } else if (id && b._id === id) {
             return 1;
           } else return a.users[user._id] ? (b.users[user._id] ? 0 : 1) : -1;
         });
+      } else if (!user) {
+        const targetIndex = surveys.findIndex((survey) => survey._id === id);
+
+        if (targetIndex !== -1) {
+          [surveys[targetIndex], surveys[0]] = [surveys[0], surveys[targetIndex]];
+        }
       }
 
       setSurvey(surveys);
@@ -51,9 +57,9 @@ export default function Survey() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const target = entry.target as HTMLElement; // dataset을 이용하기 위한 임시적인 타입 단언
-          const id = target.dataset.sid;
-          if (params.id !== id) {
-            navigate(`/survey/${id}`, { replace: true });
+          const sid = target.dataset.sid;
+          if (id !== sid) {
+            navigate(`/survey/${sid}`, { replace: true });
           } // 주소 일치
 
           const majorTag = target.dataset.tag?.split(',')[0];
@@ -115,9 +121,9 @@ export default function Survey() {
         -webkit-scroll-snap-type: y mandatory;
         scroll-snap-type: y mandatory;
 
-        // &::-webkit-scrollbar {
-        //   display: none;
-        // }
+        &::-webkit-scrollbar {
+          display: none;
+        }
       `}
     >
       {isLogin && <UserMenu />}

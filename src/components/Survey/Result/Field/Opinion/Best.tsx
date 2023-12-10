@@ -1,10 +1,8 @@
 import { css } from '@emotion/react';
 import { PropsWithChildren } from 'react';
 import profileSprites from 'assets/profile-image-sprites.png';
-import firsts from 'assets/comment-1.png';
-import seconds from 'assets/comment-2.png';
-import thirds from 'assets/comment-3.png';
 import { CommentLoaded } from 'api/type';
+import { badge, grade } from './badge';
 
 interface BestProps extends PropsWithChildren {
   data?: CommentLoaded;
@@ -23,15 +21,8 @@ export default function Best({ data, index = 0 }: BestProps) {
         position: relative;
 
         &::after {
-          content: '';
-          display: block;
-          width: 1.25rem;
-          height: 1.25rem;
-          background: url(${prize[index]});
-          background-size: 1.125rem 1.125rem;
-          background-repeat: no-repeat;
-          position: absolute;
-          top: 0;
+          ${badge}
+          ${grade[index]}
           left: 0;
         }
 
@@ -84,8 +75,6 @@ export default function Best({ data, index = 0 }: BestProps) {
     </div>
   );
 }
-
-const prize = [firsts, seconds, thirds];
 
 const profile = {
   'profile-image-01': '0 0;',

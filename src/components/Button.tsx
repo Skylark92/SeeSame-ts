@@ -57,6 +57,10 @@ const VARIANTS = {
     border-radius: 0;
     outline: none;
     margin: 0;
+    
+    position: absolute;
+    top: 0.875rem;
+    right: 0.875rem;
   `,
   custom: '',
 };

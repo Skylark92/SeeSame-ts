@@ -1,4 +1,4 @@
-import icons from 'assets/survey-icon-sprites.png';
+import icons from 'assets/survey_sprites.png';
 import SurveyContext from 'context/SurveyContext';
 import { useContext } from 'react';
 import rand from '../Result/rand';
@@ -18,10 +18,15 @@ export default function Image() {
       rand(survey._id) ? (imgTag = 'BASIC') : (imgTag = 'DISPUTE');
     } else if (majorTag === '호불호') {
       rand(survey._id) ? (imgTag = 'EMOJI') : (imgTag = 'PUBLIC');
-    } else if (majorTag === 'VS') imgTag = 'HOT';
-    else if (majorTag === '음식') imgTag = 'FOOD';
-    else if (majorTag === '사랑') imgTag = 'HEART';
-    else if (majorTag === '커플') imgTag = 'COUPLE';
+    } else if (majorTag === 'VS') {
+      rand(survey._id) ? (imgTag = 'HOT') : (imgTag = 'HOT2');
+    } else if (majorTag === '음식') {
+      rand(survey._id) ? (imgTag = 'FOOD') : (imgTag = 'FOOD2');
+    } else if (majorTag === '사랑') {
+      rand(survey._id) ? (imgTag = 'HEART') : (imgTag = 'HEART2');
+    } else if (majorTag === '커플') {
+      rand(survey._id) ? (imgTag = 'COUPLE') : (imgTag = 'COUPLE2');
+    }
   }
 
   return (
@@ -39,7 +44,7 @@ export default function Image() {
         src={icons}
         css={{
           position: 'absolute',
-          width: `calc(${imgWidth} * 9)`,
+          width: `calc(${imgWidth} * 13)`,
           height: imgWidth,
           objectFit: 'cover',
           ...icon[imgTag],
@@ -76,5 +81,17 @@ const icon = {
   },
   HOT: {
     left: `calc(-8 * ${imgWidth})`,
+  },
+  COUPLE2: {
+    left: `calc(-9 * ${imgWidth})`,
+  },
+  FOOD2: {
+    left: `calc(-10 * ${imgWidth})`,
+  },
+  HEART2: {
+    left: `calc(-11 * ${imgWidth})`,
+  },
+  HOT2: {
+    left: `calc(-12 * ${imgWidth})`,
   },
 };

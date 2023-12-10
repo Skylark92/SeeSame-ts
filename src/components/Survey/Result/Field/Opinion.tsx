@@ -10,7 +10,7 @@ import Total from './Opinion/Total';
 import Best from './Opinion/Best';
 import Button from './Opinion/Button';
 import Content from './Opinion/Content';
-import DeleteComment from 'api/survey/comment/DeleteComment';
+import deleteComment from 'api/survey/comment/deleteComment';
 import Loading from 'components/Loading';
 import { CommentLoaded } from 'api/type';
 
@@ -37,12 +37,10 @@ export default function Opinion() {
     if (!(comment && survey && user)) return;
     if (user?._id !== comment.author._id) return;
 
-    const confirm = window.confirm(
-      `"${comment.content}"\n 해당 댓글을 삭제하시겠습니까?`,
-    );
+    const confirm = window.confirm(`"${comment.content}"\n 해당 댓글을 삭제하시겠습니까?`);
 
     if (confirm) {
-      await DeleteComment(comment, survey, user);
+      await deleteComment(comment, survey, user);
       const target = comments.find((value) => comment._id === value._id);
       if (target) {
         const index = comments.indexOf(target);
@@ -56,13 +54,9 @@ export default function Opinion() {
   };
 
   return (
-    <CommentContext.Provider
-      value={{ data: comments, setData: setComments, isMore, setIsMore }}
-    >
-      <Field css={{ position: 'relative', padding: '10px 5px 3px' }}>
-        <Button onClick={() => setIsMore(true)}>
-          {comments.length < 1 ? '댓글 작성하기' : '댓글 더 보기'}
-        </Button>
+    <CommentContext.Provider value={{ data: comments, setData: setComments, isMore, setIsMore }}>
+      <Field css={{ position: 'relative', padding: '0.625rem 0.3125rem 0.1875rem', minHeight: '9.0625rem' }}>
+        <Button onClick={() => setIsMore(true)}>{comments.length < 1 ? '댓글 작성하기' : '댓글 더 보기'}</Button>
         <Field.Title css={{ margin: '-1rem auto 0' }}>BEST 댓글</Field.Title>
         {isLoading ? (
           <Loading />
@@ -102,13 +96,7 @@ export default function Opinion() {
       {isMore && (
         <Total>
           {comments.map((comment) => {
-            return (
-              <Content
-                key={comment._id}
-                data={comment}
-                onClick={() => deleteHandler(comment)}
-              />
-            );
+            return <Content key={comment._id} data={comment} onClick={() => deleteHandler(comment)} />;
           })}
         </Total>
       )}

@@ -43,7 +43,7 @@ export default function Result({ handler, ...props }: ResultProps) {
         padding: 0.375rem;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
         gap: 1.1875rem;
         z-index: 100;
@@ -55,15 +55,7 @@ export default function Result({ handler, ...props }: ResultProps) {
       `}
       {...props}
     >
-      <Button
-        variant='close'
-        css={{
-          position: 'absolute',
-          top: '0.875rem',
-          right: '0.875rem',
-        }}
-        onClick={handler}
-      />
+      <Button variant='close' onClick={handler} />
       <Brief />
       <Total />
       <Gender />

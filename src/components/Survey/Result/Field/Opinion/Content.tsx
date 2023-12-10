@@ -5,14 +5,12 @@ import { CommentLoaded } from 'api/type';
 import Button from 'components/Button';
 import likeIcon from 'assets/like-icon.svg';
 import CommentContext from 'context/CommentContext';
-import firsts from 'assets/comment-1.png';
-import seconds from 'assets/comment-2.png';
-import thirds from 'assets/comment-3.png';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import unlikeComment from 'api/survey/comment/unlikeComment';
 import SurveyContext from 'context/SurveyContext';
 import likeComment from 'api/survey/comment/likeComment';
+import { badge, grade } from './badge';
 
 interface ContentProps extends HTMLAttributes<HTMLElement> {
   data?: CommentLoaded;
@@ -30,7 +28,7 @@ export default function Content({ data, ...props }: ContentProps) {
   if (!comments) return;
   if (!data.author.profile) return;
 
-  const grade = comments.findIndex((v) => v._id === data._id);
+  const index = comments.findIndex((v) => v._id === data._id);
 
   const likeHandler = async () => {
     if (!(user && survey && data && setComments)) return;
@@ -84,15 +82,8 @@ export default function Content({ data, ...props }: ContentProps) {
           }
 
           &::after {
-            content: '';
-            display: block;
-            width: 1.25rem;
-            height: 1.25rem;
-            background: url(${grade < 3 ? prize[grade] : null});
-            background-size: 1.125rem 1.125rem;
-            background-repeat: no-repeat;
-            position: absolute;
-            top: 0;
+            ${badge}
+            ${grade[index]}
             right: -1.4375rem;
           }
         `}
@@ -147,5 +138,3 @@ const profile = {
   'profile-image-08': '-4.25rem -2.125rem',
   'profile-image-09': '-4.25rem -4.25rem',
 };
-
-const prize = [firsts, seconds, thirds];

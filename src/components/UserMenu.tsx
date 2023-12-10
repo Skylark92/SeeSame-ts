@@ -6,9 +6,9 @@ import { RootState } from 'store/store';
 import { LOGOUT } from 'store/authSlice';
 import Button from './Button';
 import profileSprites from 'assets/profile-image-sprites.png';
-import editProfileIcon from 'assets/edit-profile-icon.svg';
-import logoutIcon from 'assets/logout-icon.svg';
-import seriesIcon from 'assets/3eries-icon.svg';
+import editProfileIcon from 'assets/edit-profile-icon.png';
+import logoutIcon from 'assets/logout-icon.png';
+import seriesIcon from 'assets/3eries-icon.png';
 
 const slideFadeIn = keyframes`
 from {
@@ -36,11 +36,7 @@ export default function UserMenu() {
   const user = useSelector((state: RootState) => state.auth)?.user;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const profileIndex = user
-    ? user.profile
-      ? user.profile.profileImage
-      : 'profile-image-01'
-    : 'profile-image-01';
+  const profileIndex = user ? (user.profile ? user.profile.profileImage : 'profile-image-01') : 'profile-image-01';
 
   const onClickHandler = () => {
     if (!user) return;

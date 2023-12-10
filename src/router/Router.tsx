@@ -18,7 +18,7 @@ export default function Router() {
       children: [
         {
           path: '',
-          element: <WelcomeView />,
+          element: auth.user?.profile ? <Navigate to='/survey' /> : <WelcomeView />,
         },
         {
           path: 'signup',
