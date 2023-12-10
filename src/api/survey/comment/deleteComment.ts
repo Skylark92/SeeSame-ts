@@ -2,11 +2,7 @@ import { db } from 'api/core';
 import { CommentLoaded, CustomResponse, SurveyData, UserData } from 'api/type';
 import { deleteDoc, doc } from 'firebase/firestore';
 
-export default async function DeleteComment(
-  comment: CommentLoaded,
-  survey: SurveyData,
-  user: UserData,
-) {
+export default async function deleteComment(comment: CommentLoaded, survey: SurveyData, user: UserData) {
   const response: CustomResponse = {
     ok: false,
     message: null,
