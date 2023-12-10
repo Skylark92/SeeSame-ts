@@ -73,7 +73,8 @@ export default function Opinion() {
           </p>
         ) : (
           <React.Fragment>
-            {comments
+            {[...comments]
+              .sort((a, b) => b.like - a.like)
               .filter((_, i) => i < 3)
               .map((comment, i) => {
                 return (

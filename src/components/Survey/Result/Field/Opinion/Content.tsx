@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { HTMLAttributes, useContext } from 'react';
+import { HTMLAttributes, MouseEvent, useContext } from 'react';
 import profileSprites from 'assets/profile-image-sprites.png';
 import { CommentLoaded } from 'api/type';
 import Button from 'components/Button';
@@ -30,22 +30,23 @@ export default function Content({ data, ...props }: ContentProps) {
 
   const index = comments.findIndex((v) => v._id === data._id);
 
-  const likeHandler = async () => {
+  const likeHandler = async (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     if (!(user && survey && data && setComments)) return;
 
     if (data.users[user._id]) {
       const res = await unlikeComment(survey._id, data._id, user);
       if (res.ok) {
-        const update = [res.payload, ...comments.filter((c) => c._id !== res.payload?._id)] as CommentLoaded[];
-        setComments(update.sort((a, b) => +a.createdAt - +b.createdAt).sort((a, b) => b.like - a.like));
+        const updated = [res.payload, ...comments.filter((v) => v._id !== res.payload?._id)] as CommentLoaded[];
+        setComments(updated.sort((a, b) => +a.createdAt - +b.createdAt));
       } else {
         console.log(res.message);
       }
     } else if (!data.users[user._id]) {
       const res = await likeComment(survey._id, data._id, user);
       if (res.ok) {
-        const update = [res.payload, ...comments.filter((c) => c._id !== res.payload?._id)] as CommentLoaded[];
-        setComments(update.sort((a, b) => +a.createdAt - +b.createdAt).sort((a, b) => b.like - a.like));
+        const updated = [res.payload, ...comments.filter((v) => v._id !== res.payload?._id)] as CommentLoaded[];
+        setComments(updated.sort((a, b) => +a.createdAt - +b.createdAt));
       } else {
         console.log(res.message);
       }

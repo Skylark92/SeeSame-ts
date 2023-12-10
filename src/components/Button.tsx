@@ -18,7 +18,7 @@ export default function Button({ variant = 'custom', ...props }: ButtonProps) {
         // outline: 0.1875rem solid rgba(0, 0, 0, 0.5);
         border: none;
         border-radius: 0.625rem;
-        filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25));
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
         ${VARIANTS[variant]}
 
         pointer-events: auto;
