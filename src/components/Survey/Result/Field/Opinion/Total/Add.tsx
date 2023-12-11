@@ -44,9 +44,10 @@ export default function Add() {
   return (
     <div
       css={{
+        flex: '1 1 0',
         width: '100%',
         height: '7.0625rem',
-        padding: '1.375rem 0.75rem 2rem',
+        padding: '1.25rem 0.5625rem 0.875rem',
         borderTop: '1px solid #d9d9d9',
       }}
     >

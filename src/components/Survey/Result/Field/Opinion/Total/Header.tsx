@@ -45,6 +45,7 @@ export default function Header() {
           backgroundSize: 'cover',
           width: '1.375rem',
           height: '1.375rem',
+          filter: 'none',
         }}
         onClick={closeHandler}
       />
