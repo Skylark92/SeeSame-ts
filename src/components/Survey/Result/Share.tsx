@@ -25,7 +25,7 @@ export default function Share() {
   };
 
   return (
-    <Button css={{ position: 'absolute', bottom: '-1rem', right: 0, zIndex: '11' }} onClick={share}>
+    <Button css={{ position: 'absolute', bottom: '-1rem', right: 0, zIndex: '12' }} onClick={share}>
       Share
     </Button>
   );
