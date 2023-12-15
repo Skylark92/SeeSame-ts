@@ -45,6 +45,7 @@ export default function Title() {
         ...font.mainTitle,
         ...font.shadow,
         letterSpacing: '-0.125rem',
+        cursor: 'pointer',
       }}
       onClick={handler}
     >

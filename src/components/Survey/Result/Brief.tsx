@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import SurveyContext from 'context/SurveyContext';
 import icons from 'assets/survey_sprites.png';
 import rand from './rand';
+import Share from './Share';
 
 type ImageTag = keyof typeof resultIcon;
 
@@ -33,11 +34,11 @@ export default function Brief() {
     <div
       css={{
         width: '100%',
-        overflow: 'hidden',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         gap: '0.625rem',
+        position: 'relative',
       }}
     >
       <div
@@ -61,6 +62,7 @@ export default function Brief() {
       >
         {survey?.content}
       </p>
+      <Share />
     </div>
   );
 }
