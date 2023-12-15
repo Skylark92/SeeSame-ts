@@ -7,7 +7,7 @@ export default function Share() {
 
   const share = () => {
     const url = survey?._id
-      ? `https://seesame.co.kr/${survey?._id}?result=true`
+      ? `https://seesame.co.kr/survey/${survey?._id}?result=true`
       : `${window.location.href}?result=true`;
     const text = survey?._id ? `${survey?.title} - 어떻게 생각해?` : '이거 어떻게 생각해?';
 
@@ -25,7 +25,7 @@ export default function Share() {
   };
 
   return (
-    <Button css={{ position: 'absolute', bottom: '-1rem', right: 0, zIndex: '12' }} onClick={share}>
+    <Button css={{ position: 'absolute', bottom: '-1rem', right: 0, zIndex: '11' }} onClick={share}>
       Share
     </Button>
   );

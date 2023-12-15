@@ -29,6 +29,7 @@ to {
 export default function Result({ handler, ...props }: ResultProps) {
   const isLogin = useSelector((state: RootState) => state.auth).isLogin;
   const cardColor = useSelector((state: RootState) => state.color.cardColor);
+  const result = new URLSearchParams(window.location.search).get('result') === 'true';
 
   return (
     <article
@@ -61,7 +62,7 @@ export default function Result({ handler, ...props }: ResultProps) {
       <Gender />
       <MBTI />
       <Opinion />
-      {isLogin || <Login />}
+      {!isLogin && !result && <Login />}
     </article>
   );
 }

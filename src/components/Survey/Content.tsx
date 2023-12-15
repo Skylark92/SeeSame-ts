@@ -1,4 +1,4 @@
-import { MouseEvent, PropsWithChildren, useState, useEffect } from 'react';
+import { MouseEvent, PropsWithChildren, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import SurveyContext from 'context/SurveyContext';
@@ -9,7 +9,6 @@ import Form from './Content/Form';
 import Result from './Result';
 import vote from 'api/survey/vote';
 import Header from 'components/Header';
-import { useLocation } from 'react-router-dom';
 import { SurveyData } from 'api/type';
 
 interface ContentProps extends PropsWithChildren {
@@ -22,17 +21,6 @@ export default function Content({ survey, surveyRef }: ContentProps) {
   const [result, setResult] = useState<boolean>(false);
   const [userChoice, setUserChoice] = useState<string | null>(null);
   const user = useSelector((state: RootState) => state.auth.user);
-  const location = useLocation();
-
-  useEffect(() => {
-    if (
-      location.pathname.includes(survey._id) &&
-      location.search.includes('result=true')
-    ) {
-      setResult(true);
-      console.log(location.pathname);
-    }
-  }, []);
 
   const choiceHandler = async (event: MouseEvent<HTMLButtonElement>) => {
     const name = event.currentTarget.name;
