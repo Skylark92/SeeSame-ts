@@ -9,6 +9,7 @@ import Opinion from './Result/Field/Opinion';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import Login from './Result/Login';
+import Share from './Result/Share';
 
 interface ResultProps extends PropsWithChildren {
   handler: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -57,6 +58,7 @@ export default function Result({ handler, ...props }: ResultProps) {
       {...props}
     >
       <Button variant='close' onClick={handler} />
+      <Share />
       <Brief />
       <Total />
       <Gender />

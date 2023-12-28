@@ -62,7 +62,6 @@ export default function Brief() {
       >
         {survey?.content}
       </p>
-      <Share />
     </div>
   );
 }

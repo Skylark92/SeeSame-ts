@@ -25,8 +25,22 @@ export default function Share() {
   };
 
   return (
-    <Button css={{ position: 'absolute', bottom: '-1rem', right: 0, zIndex: '11' }} onClick={share}>
-      Share
+    <Button
+      css={{
+        position: 'absolute',
+        margin: 0,
+        padding: '0.25rem 0.5rem',
+        top: '0.875rem',
+        right: '3rem',
+        filter: 'none',
+        zIndex: 11,
+        color: 'black',
+        background: 'rgba(255, 255, 255, 0.5)',
+        mixBlendMode: 'screen',
+      }}
+      onClick={share}
+    >
+      공유하기
     </Button>
   );
 }
