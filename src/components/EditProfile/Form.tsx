@@ -91,57 +91,53 @@ export default function Form() {
     <form css={{ margin: '1rem auto 0.6875rem' }} onChange={inputHandler}>
       <Image imageIndex={inputs.profileImage} />
       <Input nickname={inputs.nickname} />
-      <Field
-        title='성별'
-        css={{
-          display: 'flex',
-          gap: '0.375rem',
-        }}
-      >
-        {['남자', '여자'].map((gender) => (
-          <Radio key={gender} id={gender} name='gender' variant='large' />
-        ))}
+      <Field css={{ marginTop: '1.125rem' }}>
+        <Field.Title>성별</Field.Title>
+        <Field.Radio>
+          {['남자', '여자'].map((gender) => (
+            <Radio key={gender} id={gender} name='gender' variant='large' />
+          ))}
+        </Field.Radio>
       </Field>
-      <Field
-        title='연령대'
-        css={{
-          display: 'flex',
-          gap: '0.375rem',
-        }}
-      >
-        {['10대', '20대', '30대', '40대', '청춘'].map((age) => (
-          <Radio key={age} id={age} name='age' variant='small' />
-        ))}
+      <Field>
+        <Field.Title>연령대</Field.Title>
+        <Field.Radio>
+          {['10대', '20대', '30대', '40대', '청춘'].map((age) => (
+            <Radio key={age} id={age} name='age' variant='small' />
+          ))}
+        </Field.Radio>
       </Field>
-      <Field
-        title='MBTI'
-        css={{
-          display: 'grid',
-          justifyContent: 'center',
-          gridTemplate: `
+      <Field css={{ marginBottom: 0 }}>
+        <Field.Title>MBTI</Field.Title>
+        <Field.Radio
+          css={{
+            display: 'grid',
+            justifyContent: 'center',
+            gridTemplate: `
             "E S T J"
             "I N F P"
           `,
-          gap: '0.375rem',
-        }}
-      >
-        {['E', 'I'].map((EI) => (
-          <Radio css={{ gridArea: EI }} key={EI} id={EI} name='EI' variant='small' />
-        ))}
-        {['S', 'N'].map((SN) => (
-          <Radio css={{ gridArea: SN }} key={SN} id={SN} name='SN' variant='small' />
-        ))}
-        {['T', 'F'].map((TF) => (
-          <Radio css={{ gridArea: TF }} key={TF} id={TF} name='TF' variant='small' />
-        ))}
-        {['J', 'P'].map((JP) => (
-          <Radio css={{ gridArea: JP }} key={JP} id={JP} name='JP' variant='small' />
-        ))}
+          }}
+        >
+          {['E', 'I'].map((EI) => (
+            <Radio css={{ gridArea: EI }} key={EI} id={EI} name='EI' variant='small' />
+          ))}
+          {['S', 'N'].map((SN) => (
+            <Radio css={{ gridArea: SN }} key={SN} id={SN} name='SN' variant='small' />
+          ))}
+          {['T', 'F'].map((TF) => (
+            <Radio css={{ gridArea: TF }} key={TF} id={TF} name='TF' variant='small' />
+          ))}
+          {['J', 'P'].map((JP) => (
+            <Radio css={{ gridArea: JP }} key={JP} id={JP} name='JP' variant='small' />
+          ))}
+        </Field.Radio>
+        <div></div>
       </Field>
       <ErrorMessage msg={error} />
       <Button
         variant='form'
-        css={{ fontSize: '1.25rem', marginTop: '0.5rem' }}
+        css={{ fontSize: '1.25rem', marginTop: '0.25rem' }}
         disabled={!isValid || isPending}
         onClick={submitHandler}
       >
