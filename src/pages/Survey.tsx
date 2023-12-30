@@ -25,8 +25,8 @@ export default function Survey() {
     const siv = () => {
       if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
-        const survey = document.querySelector(`[data-sid="${id}"]`);
-        survey?.scrollIntoView({ behavior: 'auto', block: 'center' });
+        const main = document.getElementById('survey');
+        main?.scrollTo(0, main?.scrollTop - 1);
       }, 200);
     };
 
