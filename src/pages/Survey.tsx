@@ -26,13 +26,13 @@ export default function Survey() {
       if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
         const main = document.getElementById('survey');
-        main?.scrollTo(0, main?.scrollTop - 1);
-      }, 200);
+        main?.scrollTo({ top: main?.scrollTop - 1, behavior: 'smooth' });
+      }, 500);
     };
 
     window.addEventListener('resize', siv);
     return () => window.removeEventListener('resize', siv);
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     getSurveys().then((surveys) => {
