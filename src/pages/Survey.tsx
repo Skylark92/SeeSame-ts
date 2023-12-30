@@ -21,6 +21,20 @@ export default function Survey() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    const siv = () => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        const survey = document.querySelector(`[data-sid="${id}"]`);
+        survey?.scrollIntoView({ behavior: 'auto', block: 'center' });
+      }, 200);
+    };
+
+    window.addEventListener('resize', siv);
+    return () => window.removeEventListener('resize', siv);
+  }, [id]);
+
+  useEffect(() => {
     getSurveys().then((surveys) => {
       for (let i = surveys.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
