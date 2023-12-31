@@ -108,6 +108,7 @@ export default function Add() {
             background-size: cover;
             margin: 0;
             filter: none;
+            border-radius: 0.3125rem;
           `}
           disabled={isPending}
           onClick={submitHandler}

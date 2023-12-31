@@ -27,7 +27,7 @@ export default function Survey() {
       timer = setTimeout(() => {
         const main = document.getElementById('survey');
         main?.scrollTo({ top: main?.scrollTop - 1, behavior: 'smooth' });
-      }, 500);
+      }, 300);
     };
 
     window.addEventListener('resize', siv);
