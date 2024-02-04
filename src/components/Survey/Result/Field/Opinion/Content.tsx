@@ -83,7 +83,7 @@ export default function Content({ data, ...props }: ContentProps) {
           }
 
           &::after {
-            ${badge}
+            ${grade[index] && badge}
             ${grade[index]}
             right: -1.4375rem;
           }
